@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-<<<<<<< HEAD
+
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -12,15 +12,7 @@
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 
-=======
-	<groupId>com.zhang.spring</groupId>
-	<artifactId>spring-boot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
-	<name>spring-boot</name>
-	<description>Demo project for Spring Boot</description>
->>>>>>> d4c2f1b06e57b9cad66eb88b54f0b1b027300b6e
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -45,21 +37,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>4.3.0.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>4.3.0.RELEASE</version>
-		</dependency>
 
-
->>>>>>> d4c2f1b06e57b9cad66eb88b54f0b1b027300b6e
 	</dependencies>
 
 	<build>
