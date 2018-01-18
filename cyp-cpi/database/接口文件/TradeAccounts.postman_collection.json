@@ -1,0 +1,53 @@
+{
+	"info": {
+		"name": "TradeAccounts",
+		"_postman_id": "e39ee61e-9f07-00f2-2e68-59eea1ae67c8",
+		"description": "交易账户",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8443/cpi/base/tradeaccounts/list.do",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"accountnumber\":\"10000300000320171011\",\n\t\"accountname\":\"北京供应商子公司\",\n\t\"accountcategory\":\"3\",\n\t\"accountstate\":\"1\",\n\t\"orgid\":\"0_100003000003\",\n\t\"operateflag\":\"3\",\n\t\"ledgeramount\":\"328.76\",\n\t\"approvestate\":\"2\",\n\t\"balance\":\"98562.37\",\n\t\"page\":\"1\",\n\t\"rows\":\"50\"\n}"
+				},
+				"url": {
+					"raw": "https://localhost:8443/cpi/base/tradeaccounts/list.do?userId=admin",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"cpi",
+						"base",
+						"tradeaccounts",
+						"list.do"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "admin",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

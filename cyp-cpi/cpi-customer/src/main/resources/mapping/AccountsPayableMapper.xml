@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.chx.cpi.customer.rm.accountspayable.dao.AccountsPayableDao">
+    <!--<resultMap id="baseResultMap" type="com.ceying.chx.cpi.customer.rm.accountspayable.entity.AccountsInfoDto">
+        <result column="PAYABLENO" jdbcType="VARCHAR" property="id"></result>
+        <result column="DESCRIPTION" jdbcType="VARCHAR" property="name"></result>
+        <result column="FREEZEAMOUNT" jdbcType="FLOAT" property="siteprice"></result>
+        <result column="FREEZEAMOUNT" jdbcType="FLOAT" property="marketprice"></result>
+    </resultMap>-->
+
+    <select id="get" parameterType="java.lang.String" resultType="com.ceying.chx.cpi.customer.rm.accountspayable.entity.AccountsInfoDto">
+        select PAYABLENO as id, '测试名称' as name, FREEZEAMOUNT as siteprice, FREEZEAMOUNT as marketprice,
+                '#' as imageUrl, '#' as url
+        from t_accountspayable WHERE PAYABLENO = #{payableno,jdbcType=VARCHAR}
+    </select>
+</mapper>

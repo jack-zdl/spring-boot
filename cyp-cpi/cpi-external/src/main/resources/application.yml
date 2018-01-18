@@ -1,0 +1,85 @@
+server:
+  port: 8442
+  address: localhost
+  # session最大超时时间(分钟)，默认为30
+#  session:
+#    timeout: 30
+  tomcat:
+  # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 存放Tomcat的日志、Dump等文件的临时文件夹，默认为系统的tmp文件夹（如：C:\Users\Angel\AppData\Local\Temp）
+    basedir: C:/log
+
+
+    max-connections: 1000    # 设置最大连接数
+    max-threads: 100   # tomcat最大线程数，默认为200
+#       配置与客户端建立连接超时时间，从接收到连接后在配置的时间内还没有接收到客户端请求行时，将被认定为连接超时，默认为60000（60s）。
+  connection-timeout: 50000
+
+  ssl:
+    enabled: true  #启动tomcat ssl配置
+    key-password: 123456  #密码
+#    key-alias: cpi  # 别名
+    key-store: C:/Program Files/Java/https/keystore   #位置 y应该是https的签名证书的存储位置
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@192.168.6.253:1521:ORCL
+    username: cyp
+    password: cyp
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    max-idle: 10
+    max-wait: 1000
+    min-idle : 5
+    initial-size : 5
+
+  redis:
+    host: localhost
+    password:
+    port: 6379
+    pool:
+      # 连接池中的最大空闲连接
+      max-idle: 100
+      # 连接池中的最小空闲连接
+      min-idle: 1
+      # 连接池最大连接数（使用负值表示没有限制）
+      max-active: 1000
+      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+      max-wait: -1
+    database: 0
+    # 连接超时时间（毫秒）
+    timeout: 0
+
+  aop:
+    auto: true
+    proxy-target-class: true
+# mybatis 的配置方式
+mybatis:
+  mapperLocations: classpath:mapping/*.xml
+  typeAliasesPackage:  com.ceying.chx.cpi.base.rm.org.entity
+
+# 自动生成
+#generator:
+#  mapperConfigFilename: classpath:config/mybatis-config.xml
+#  project: src/mian/java
+#  resources: src/mian/resources
+#  domainPackage: com.ceying.chx.cpi.base.rm.org.entity
+#  mapperPackage: mapping
+#  daoPackage: com.ceying.chx.cpi.base.rm.org.dao
+
+
+logging:
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder : trace
+    org.hibernate.type.descriptor.sql.BasicExtractor : trace
+    com.zhang : debug
+
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}}

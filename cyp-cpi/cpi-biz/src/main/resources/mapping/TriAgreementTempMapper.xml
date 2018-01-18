@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.chx.cpi.biz.rm.agreement.dao.TriAgreementTempDao">
+  <resultMap id="BaseResultMap" type="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    <id column="URID" jdbcType="VARCHAR" property="urid" />
+    <result column="TENANTID" jdbcType="DECIMAL" property="tenantid" />
+    <result column="TATEMPLATECODE" jdbcType="VARCHAR" property="tatemplatecode" />
+    <result column="TATEMPLATEVERSION" jdbcType="DECIMAL" property="tatemplateversion" />
+    <result column="BANKID" jdbcType="VARCHAR" property="bankid" />
+    <result column="CORECOMPANYID" jdbcType="VARCHAR" property="corecompanyid" />
+    <result column="CREDITLIMITS" jdbcType="FLOAT" property="creditlimits" />
+    <result column="ISRECOURSE" jdbcType="VARCHAR" property="isrecourse" />
+    <result column="ISACTIVE" jdbcType="CHAR" property="isactive" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="LASTMODIFIEDBY" jdbcType="VARCHAR" property="lastmodifiedby" />
+    <result column="LASTMODIFIEDON" jdbcType="TIMESTAMP" property="lastmodifiedon" />
+    <result column="ROWVERSION" jdbcType="DECIMAL" property="rowversion" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="LASTOPERATEFLAG" jdbcType="VARCHAR" property="lastoperateflag" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    <result column="TEMPLATECONTENT" jdbcType="BLOB" property="templatecontent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    URID, TENANTID, TATEMPLATECODE, TATEMPLATEVERSION, BANKID, CORECOMPANYID, CREDITLIMITS, 
+    ISRECOURSE, ISACTIVE, CREATEDBY, CREATEDON, LASTMODIFIEDBY, LASTMODIFIEDON, ROWVERSION, 
+    DESCRIPTION, LASTOPERATEFLAG
+  </sql>
+  <sql id="Blob_Column_List">
+    TEMPLATECONTENT
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_TRIPARTITEAGREEMENTTEMPLATE
+    where URID = #{urid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_TRIPARTITEAGREEMENTTEMPLATE
+    where URID = #{urid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    insert into T_TRIPARTITEAGREEMENTTEMPLATE (URID, TENANTID, TATEMPLATECODE, 
+      TATEMPLATEVERSION, BANKID, CORECOMPANYID, 
+      CREDITLIMITS, ISRECOURSE, ISACTIVE, 
+      CREATEDBY, CREATEDON, LASTMODIFIEDBY, 
+      LASTMODIFIEDON, ROWVERSION, DESCRIPTION, 
+      LASTOPERATEFLAG, TEMPLATECONTENT)
+    values (#{urid,jdbcType=VARCHAR}, #{tenantid,jdbcType=DECIMAL}, #{tatemplatecode,jdbcType=VARCHAR}, 
+      #{tatemplateversion,jdbcType=DECIMAL}, #{bankid,jdbcType=VARCHAR}, #{corecompanyid,jdbcType=VARCHAR}, 
+      #{creditlimits,jdbcType=FLOAT}, #{isrecourse,jdbcType=VARCHAR}, #{isactive,jdbcType=CHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, 
+      #{lastmodifiedon,jdbcType=TIMESTAMP}, #{rowversion,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
+      #{lastoperateflag,jdbcType=VARCHAR}, #{templatecontent,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    insert into T_TRIPARTITEAGREEMENTTEMPLATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="urid != null">
+        URID,
+      </if>
+      <if test="tenantid != null">
+        TENANTID,
+      </if>
+      <if test="tatemplatecode != null">
+        TATEMPLATECODE,
+      </if>
+      <if test="tatemplateversion != null">
+        TATEMPLATEVERSION,
+      </if>
+      <if test="bankid != null">
+        BANKID,
+      </if>
+      <if test="corecompanyid != null">
+        CORECOMPANYID,
+      </if>
+      <if test="creditlimits != null">
+        CREDITLIMITS,
+      </if>
+      <if test="isrecourse != null">
+        ISRECOURSE,
+      </if>
+      <if test="isactive != null">
+        ISACTIVE,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY,
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON,
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="lastoperateflag != null">
+        LASTOPERATEFLAG,
+      </if>
+      <if test="templatecontent != null">
+        TEMPLATECONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="urid != null">
+        #{urid,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="tatemplatecode != null">
+        #{tatemplatecode,jdbcType=VARCHAR},
+      </if>
+      <if test="tatemplateversion != null">
+        #{tatemplateversion,jdbcType=DECIMAL},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="corecompanyid != null">
+        #{corecompanyid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditlimits != null">
+        #{creditlimits,jdbcType=FLOAT},
+      </if>
+      <if test="isrecourse != null">
+        #{isrecourse,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowversion != null">
+        #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastoperateflag != null">
+        #{lastoperateflag,jdbcType=VARCHAR},
+      </if>
+      <if test="templatecontent != null">
+        #{templatecontent,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    update T_TRIPARTITEAGREEMENTTEMPLATE
+    <set>
+      <if test="tenantid != null">
+        TENANTID = #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="tatemplatecode != null">
+        TATEMPLATECODE = #{tatemplatecode,jdbcType=VARCHAR},
+      </if>
+      <if test="tatemplateversion != null">
+        TATEMPLATEVERSION = #{tatemplateversion,jdbcType=DECIMAL},
+      </if>
+      <if test="bankid != null">
+        BANKID = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="corecompanyid != null">
+        CORECOMPANYID = #{corecompanyid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditlimits != null">
+        CREDITLIMITS = #{creditlimits,jdbcType=FLOAT},
+      </if>
+      <if test="isrecourse != null">
+        ISRECOURSE = #{isrecourse,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastoperateflag != null">
+        LASTOPERATEFLAG = #{lastoperateflag,jdbcType=VARCHAR},
+      </if>
+      <if test="templatecontent != null">
+        TEMPLATECONTENT = #{templatecontent,jdbcType=BLOB},
+      </if>
+    </set>
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    update T_TRIPARTITEAGREEMENTTEMPLATE
+    set TENANTID = #{tenantid,jdbcType=DECIMAL},
+      TATEMPLATECODE = #{tatemplatecode,jdbcType=VARCHAR},
+      TATEMPLATEVERSION = #{tatemplateversion,jdbcType=DECIMAL},
+      BANKID = #{bankid,jdbcType=VARCHAR},
+      CORECOMPANYID = #{corecompanyid,jdbcType=VARCHAR},
+      CREDITLIMITS = #{creditlimits,jdbcType=FLOAT},
+      ISRECOURSE = #{isrecourse,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      LASTOPERATEFLAG = #{lastoperateflag,jdbcType=VARCHAR},
+      TEMPLATECONTENT = #{templatecontent,jdbcType=BLOB}
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceying.chx.cpi.biz.rm.agreement.entity.TriAgreementTemp">
+    update T_TRIPARTITEAGREEMENTTEMPLATE
+    set TENANTID = #{tenantid,jdbcType=DECIMAL},
+      TATEMPLATECODE = #{tatemplatecode,jdbcType=VARCHAR},
+      TATEMPLATEVERSION = #{tatemplateversion,jdbcType=DECIMAL},
+      BANKID = #{bankid,jdbcType=VARCHAR},
+      CORECOMPANYID = #{corecompanyid,jdbcType=VARCHAR},
+      CREDITLIMITS = #{creditlimits,jdbcType=FLOAT},
+      ISRECOURSE = #{isrecourse,jdbcType=VARCHAR},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      LASTOPERATEFLAG = #{lastoperateflag,jdbcType=VARCHAR}
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+
+    <select id="list" resultMap="BaseResultMap">
+        select * from (
+        select a.*,rownum n from
+        (select
+        t.urid,
+        o.ORG_NAME as bankid,
+        o1.ORG_NAME as corecompanyid,
+        t.tatemplatecode,
+        t.tatemplateversion,
+        d.C_CAPTION as isactive,
+        d1.C_CAPTION as lastoperateflag,
+        d2.C_CAPTION as isrecourse,
+        t.description,
+        t.templatecontent
+        from T_TRIPARTITEAGREEMENTTEMPLATE t,
+        (select  tatemplatecode,
+        max(tatemplateversion) as tatemplateversion
+        from T_TRIPARTITEAGREEMENTTEMPLATE
+        group by tatemplatecode)  m,tsys_organization o,tsys_organization o1,TDICTIONARY d,TDICTIONARY d1,TDICTIONARY d2
+        where  t.tatemplatecode = m.tatemplatecode
+        and t.BANKID = o.ORG_ID
+        and t.CORECOMPANYID = o1.ORG_ID
+        and d.L_KEYNO = '9999067'
+        and d1.L_KEYNO = '9999084'
+        and d2.L_KEYNO = '9999065'
+        and t.isactive = d.C_KEYVALUE
+        and t.lastoperateflag = d1.C_KEYVALUE
+        and t.isrecourse = d2.C_KEYVALUE
+        and t.tatemplateversion = m.tatemplateversion
+        <if test="isactive != null and isactive!=''">
+            and t.isactive = #{isactive,jdbcType=VARCHAR}
+        </if>
+        <if test="tatemplatecode != null and tatemplatecode!=''">
+            and t.tatemplatecode = #{tatemplatecode,jdbcType=VARCHAR}
+        </if>
+        <if test="lastoperateflag != null and lastoperateflag!=''">
+            and t.lastoperateflag = #{lastoperateflag,jdbcType=VARCHAR}
+        </if>
+        <if test="bankid != null and bankid!=''">
+            and o.ORG_NAME like concat(concat('%',#{bankid}),'%')
+        </if>
+        <if test="corecompanyid != null and corecompanyid!=''">
+            and o1.ORG_NAME like concat(concat('%',#{corecompanyid}),'%')
+        </if>
+        ORDER BY t.CREATEDON desc
+        )a
+        where 1=1 and rownum<![CDATA[ <= ]]> #{rows} * #{page}
+        )
+        where n <![CDATA[ > ]]>(#{page} - 1) * #{rows}
+    </select>
+    <select id="listCount" resultType="java.lang.Integer">
+        select count(*)
+        from T_TRIPARTITEAGREEMENTTEMPLATE t,
+        (select  tatemplatecode,
+        max(tatemplateversion) as tatemplateversion
+        from T_TRIPARTITEAGREEMENTTEMPLATE
+        group by tatemplatecode)  m,tsys_organization o,tsys_organization o1,TDICTIONARY d,TDICTIONARY d1,TDICTIONARY d2
+        where  t.tatemplatecode = m.tatemplatecode
+        and t.BANKID = o.ORG_ID
+        and t.CORECOMPANYID = o1.ORG_ID
+        and d.L_KEYNO = '9999067'
+        and d1.L_KEYNO = '9999084'
+        and d2.L_KEYNO = '9999065'
+        and t.isactive = d.C_KEYVALUE
+        and t.lastoperateflag = d1.C_KEYVALUE
+        and t.isrecourse = d2.C_KEYVALUE
+        and t.tatemplateversion = m.tatemplateversion
+        <if test="isactive != null and isactive!=''">
+            and t.isactive = #{isactive,jdbcType=VARCHAR}
+        </if>
+        <if test="tatemplatecode != null and tatemplatecode!=''">
+            and t.tatemplatecode = #{tatemplatecode,jdbcType=VARCHAR}
+        </if>
+        <if test="lastoperateflag != null and lastoperateflag!=''">
+            and t.lastoperateflag = #{lastoperateflag,jdbcType=VARCHAR}
+        </if>
+        <if test="bankid != null and bankid!=''">
+            and o.ORG_NAME like concat(concat('%',#{bankid}),'%')
+        </if>
+        <if test="corecompanyid != null and corecompanyid!=''">
+            and o1.ORG_NAME like concat(concat('%',#{corecompanyid}),'%')
+        </if>
+        ORDER BY t.CREATEDON desc
+    </select>
+</mapper>

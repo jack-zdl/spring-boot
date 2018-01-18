@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.chx.cpi.base.rm.bigcontract.dao.BigContractDao">
+  <resultMap id="BaseResultMap" type="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto">
+    <id column="URID" jdbcType="VARCHAR" property="urid" />
+    <result column="TENANTID" jdbcType="DECIMAL" property="tenantid" />
+    <result column="CONTRACTID" jdbcType="VARCHAR" property="contractid" />
+    <result column="BANKID" jdbcType="VARCHAR" property="bankid" />
+    <result column="CORECOMPANYID" jdbcType="VARCHAR" property="corecompanyid" />
+    <result column="CREDITLIMITS" jdbcType="FLOAT" property="creditlimits" />
+    <result column="RECOURSEINTERESTRATE" jdbcType="FLOAT" property="recourseinterestrate" />
+    <result column="NONRECOURSEINTERESTRATE" jdbcType="FLOAT" property="nonrecourseinterestrate" />
+    <result column="RECOURSEDISCOUNT" jdbcType="FLOAT" property="recoursediscount" />
+    <result column="NONRECOURSEDISCOUNT" jdbcType="FLOAT" property="nonrecoursediscount" />
+    <result column="ISACTIVE" jdbcType="CHAR" property="isactive" />
+    <result column="CREATEDBY" jdbcType="VARCHAR" property="createdby" />
+    <result column="CREATEDON" jdbcType="TIMESTAMP" property="createdon" />
+    <result column="LASTMODIFIEDBY" jdbcType="VARCHAR" property="lastmodifiedby" />
+    <result column="LASTMODIFIEDON" jdbcType="TIMESTAMP" property="lastmodifiedon" />
+    <result column="ROWVERSION" jdbcType="DECIMAL" property="rowversion" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="LASTOPERATIONID" jdbcType="VARCHAR" property="lastoperationid" />
+    <result column="QUOTETEMPLATE" jdbcType="VARCHAR" property="quotetemplate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    URID, TENANTID, CONTRACTID, BANKID, CORECOMPANYID, CREDITLIMITS, RECOURSEINTERESTRATE, 
+    NONRECOURSEINTERESTRATE, RECOURSEDISCOUNT, NONRECOURSEDISCOUNT, ISACTIVE, CREATEDBY, 
+    CREATEDON, LASTMODIFIEDBY, LASTMODIFIEDON, ROWVERSION, DESCRIPTION, LASTOPERATIONID, 
+    QUOTETEMPLATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_BIGCONTRACTS
+    where URID = #{urid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from T_BIGCONTRACTS
+    where URID = #{urid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto">
+    insert into T_BIGCONTRACTS (URID, TENANTID, CONTRACTID, 
+      BANKID, CORECOMPANYID, CREDITLIMITS, 
+      RECOURSEINTERESTRATE, NONRECOURSEINTERESTRATE, 
+      RECOURSEDISCOUNT, NONRECOURSEDISCOUNT, ISACTIVE, 
+      CREATEDBY, CREATEDON, LASTMODIFIEDBY, 
+      LASTMODIFIEDON, ROWVERSION, DESCRIPTION, 
+      LASTOPERATIONID, QUOTETEMPLATE)
+    values (#{urid,jdbcType=VARCHAR}, #{tenantid,jdbcType=DECIMAL}, #{contractid,jdbcType=VARCHAR}, 
+      #{bankid,jdbcType=VARCHAR}, #{corecompanyid,jdbcType=VARCHAR}, #{creditlimits,jdbcType=FLOAT}, 
+      #{recourseinterestrate,jdbcType=FLOAT}, #{nonrecourseinterestrate,jdbcType=FLOAT}, 
+      #{recoursediscount,jdbcType=FLOAT}, #{nonrecoursediscount,jdbcType=FLOAT}, #{isactive,jdbcType=CHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createdon,jdbcType=TIMESTAMP}, #{lastmodifiedby,jdbcType=VARCHAR}, 
+      #{lastmodifiedon,jdbcType=TIMESTAMP}, #{rowversion,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
+      #{lastoperationid,jdbcType=VARCHAR}, #{quotetemplate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto">
+    insert into T_BIGCONTRACTS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="urid != null">
+        URID,
+      </if>
+      <if test="tenantid != null">
+        TENANTID,
+      </if>
+      <if test="contractid != null">
+        CONTRACTID,
+      </if>
+      <if test="bankid != null">
+        BANKID,
+      </if>
+      <if test="corecompanyid != null">
+        CORECOMPANYID,
+      </if>
+      <if test="creditlimits != null">
+        CREDITLIMITS,
+      </if>
+      <if test="recourseinterestrate != null">
+        RECOURSEINTERESTRATE,
+      </if>
+      <if test="nonrecourseinterestrate != null">
+        NONRECOURSEINTERESTRATE,
+      </if>
+      <if test="recoursediscount != null">
+        RECOURSEDISCOUNT,
+      </if>
+      <if test="nonrecoursediscount != null">
+        NONRECOURSEDISCOUNT,
+      </if>
+      <if test="isactive != null">
+        ISACTIVE,
+      </if>
+      <if test="createdby != null">
+        CREATEDBY,
+      </if>
+      <if test="createdon != null">
+        CREATEDON,
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY,
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON,
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="lastoperationid != null">
+        LASTOPERATIONID,
+      </if>
+      <if test="quotetemplate != null">
+        QUOTETEMPLATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="urid != null">
+        #{urid,jdbcType=VARCHAR},
+      </if>
+      <if test="tenantid != null">
+        #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="contractid != null">
+        #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="corecompanyid != null">
+        #{corecompanyid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditlimits != null">
+        #{creditlimits,jdbcType=FLOAT},
+      </if>
+      <if test="recourseinterestrate != null">
+        #{recourseinterestrate,jdbcType=FLOAT},
+      </if>
+      <if test="nonrecourseinterestrate != null">
+        #{nonrecourseinterestrate,jdbcType=FLOAT},
+      </if>
+      <if test="recoursediscount != null">
+        #{recoursediscount,jdbcType=FLOAT},
+      </if>
+      <if test="nonrecoursediscount != null">
+        #{nonrecoursediscount,jdbcType=FLOAT},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null">
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowversion != null">
+        #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastoperationid != null">
+        #{lastoperationid,jdbcType=VARCHAR},
+      </if>
+      <if test="quotetemplate != null">
+        #{quotetemplate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto">
+    update T_BIGCONTRACTS
+    <set>
+      <if test="tenantid != null">
+        TENANTID = #{tenantid,jdbcType=DECIMAL},
+      </if>
+      <if test="contractid != null">
+        CONTRACTID = #{contractid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        BANKID = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="corecompanyid != null">
+        CORECOMPANYID = #{corecompanyid,jdbcType=VARCHAR},
+      </if>
+      <if test="creditlimits != null">
+        CREDITLIMITS = #{creditlimits,jdbcType=FLOAT},
+      </if>
+      <if test="recourseinterestrate != null">
+        RECOURSEINTERESTRATE = #{recourseinterestrate,jdbcType=FLOAT},
+      </if>
+      <if test="nonrecourseinterestrate != null">
+        NONRECOURSEINTERESTRATE = #{nonrecourseinterestrate,jdbcType=FLOAT},
+      </if>
+      <if test="recoursediscount != null">
+        RECOURSEDISCOUNT = #{recoursediscount,jdbcType=FLOAT},
+      </if>
+      <if test="nonrecoursediscount != null">
+        NONRECOURSEDISCOUNT = #{nonrecoursediscount,jdbcType=FLOAT},
+      </if>
+      <if test="isactive != null">
+        ISACTIVE = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="createdby != null">
+        CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createdon != null">
+        CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastmodifiedby != null">
+        LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      </if>
+      <if test="lastmodifiedon != null">
+        LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rowversion != null">
+        ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="lastoperationid != null">
+        LASTOPERATIONID = #{lastoperationid,jdbcType=VARCHAR},
+      </if>
+      <if test="quotetemplate != null">
+        QUOTETEMPLATE = #{quotetemplate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto">
+    update T_BIGCONTRACTS
+    set TENANTID = #{tenantid,jdbcType=DECIMAL},
+      CONTRACTID = #{contractid,jdbcType=VARCHAR},
+      BANKID = #{bankid,jdbcType=VARCHAR},
+      CORECOMPANYID = #{corecompanyid,jdbcType=VARCHAR},
+      CREDITLIMITS = #{creditlimits,jdbcType=FLOAT},
+      RECOURSEINTERESTRATE = #{recourseinterestrate,jdbcType=FLOAT},
+      NONRECOURSEINTERESTRATE = #{nonrecourseinterestrate,jdbcType=FLOAT},
+      RECOURSEDISCOUNT = #{recoursediscount,jdbcType=FLOAT},
+      NONRECOURSEDISCOUNT = #{nonrecoursediscount,jdbcType=FLOAT},
+      ISACTIVE = #{isactive,jdbcType=CHAR},
+      CREATEDBY = #{createdby,jdbcType=VARCHAR},
+      CREATEDON = #{createdon,jdbcType=TIMESTAMP},
+      LASTMODIFIEDBY = #{lastmodifiedby,jdbcType=VARCHAR},
+      LASTMODIFIEDON = #{lastmodifiedon,jdbcType=TIMESTAMP},
+      ROWVERSION = #{rowversion,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      LASTOPERATIONID = #{lastoperationid,jdbcType=VARCHAR},
+      QUOTETEMPLATE = #{quotetemplate,jdbcType=VARCHAR}
+    where URID = #{urid,jdbcType=VARCHAR}
+  </update>
+    <select id="list" parameterType="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto" resultType="com.ceying.chx.cpi.base.rm.bigcontract.entity.BigContractDto">
+        select * from (
+        select a.*,rownum n from
+        (
+        select a.corecompanyid,a.bankid,a.contractid,a.lastoperationid,a.quotetemplate,a.creditlimits,
+        to_char(a.nonrecoursediscount,'fm99990.0000') nonrecoursediscount,to_char(a.nonrecourseinterestrate,'fm99990.0000') nonrecourseinterestrate,
+        to_char(a.recoursediscount,'fm99990.0000') recoursediscount,to_char(a.recourseinterestrate,'fm99990.0000') recourseinterestrate,a.description,
+        b.org_name corecompanyidname,c.org_name bankidname
+        from T_BIGCONTRACTS a,tsys_organization b,tsys_organization c
+        where a.corecompanyid=b.org_id and a.bankid=c.org_id
+        <if test="corecompanyid != null and corecompanyid!=''">
+            and a.corecompanyid = #{corecompanyid,jdbcType=VARCHAR}
+        </if>
+        <if test="bankid != null and bankid!=''">
+            and a.bankid = #{bankid,jdbcType=VARCHAR}
+        </if>
+        <if test="contractid != null and contractid!=''">
+            and a.contractid = #{contractid,jdbcType=VARCHAR}
+        </if>
+        <if test="lastoperationid != null and lastoperationid!=''">
+            and a.lastoperationid = #{lastoperationid,jdbcType=VARCHAR}
+        </if>
+        <if test="quotetemplate != null and quotetemplate!=''">
+            and a.quotetemplate = #{quotetemplate,jdbcType=VARCHAR}
+        </if>
+        )a
+        where 1=1 and rownum<![CDATA[ <= ]]> #{rows} * #{page}
+        )
+        where n <![CDATA[ > ]]>(#{page} - 1) * #{rows}
+    </select>
+    <select id="countTotal" resultType="java.lang.Integer">
+        select count(*)
+        from T_BIGCONTRACTS a,tsys_organization b,tsys_organization c
+        where a.corecompanyid=b.org_id and a.bankid=c.org_id
+        <if test="corecompanyid != null and corecompanyid!=''">
+            and a.corecompanyid = #{corecompanyid,jdbcType=VARCHAR}
+        </if>
+        <if test="bankid != null and bankid!=''">
+            and a.bankid = #{bankid,jdbcType=VARCHAR}
+        </if>
+        <if test="contractid != null and contractid!=''">
+            and a.contractid = #{contractid,jdbcType=VARCHAR}
+        </if>
+        <if test="lastoperationid != null and lastoperationid!=''">
+            and a.lastoperationid = #{lastoperationid,jdbcType=VARCHAR}
+        </if>
+        <if test="quotetemplate != null and quotetemplate!=''">
+            and a.quotetemplate = #{quotetemplate,jdbcType=VARCHAR}
+        </if>
+    </select>
+</mapper>
