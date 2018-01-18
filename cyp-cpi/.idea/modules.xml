@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cpi-base/cpi-base.iml" filepath="$PROJECT_DIR$/cpi-base/cpi-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpi-biz/cpi-biz.iml" filepath="$PROJECT_DIR$/cpi-biz/cpi-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpi-customer/cpi-customer.iml" filepath="$PROJECT_DIR$/cpi-customer/cpi-customer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cpi-external/cpi-external.iml" filepath="$PROJECT_DIR$/cpi-external/cpi-external.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cyp-cpi.iml" filepath="$PROJECT_DIR$/cyp-cpi.iml" />
+    </modules>
+  </component>
+</project>

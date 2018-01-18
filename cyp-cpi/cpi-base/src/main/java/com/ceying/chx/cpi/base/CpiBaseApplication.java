@@ -27,7 +27,7 @@ import java.io.IOException;
 @MapperScan("com.ceying.chx.cpi.base.rm")
 //@ServletComponentScan   // 这个注解可以让自制的listener或者filter 或者 servlet 有效
 @EnableConfigurationProperties({IPBlack.class})
-@EnableCaching
+//@EnableCaching
 public class CpiBaseApplication {
 
 	public static void main(String[] args) {
