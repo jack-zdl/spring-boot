@@ -29,9 +29,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
+    url: jdbc:mysql://27.0.0.10:3307/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false  #jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
     username: root
-    password: manage
+    password: 1993212 #manage
     driver-class-name: com.mysql.jdbc.Driver #oracle.jdbc.driver.OracleDriver
     max-idle: 10
     max-wait: 1000

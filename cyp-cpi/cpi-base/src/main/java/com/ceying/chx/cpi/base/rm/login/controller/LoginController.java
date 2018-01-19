@@ -62,16 +62,16 @@ public class LoginController {
         return respJson;
     }
 
-    @Cacheable("info")
+    @Cacheable(value = "info")
     @GetMapping("/cache")
     @ResponseBody
     public String  cache(HttpServletRequest request) throws ParamException, RedisConnectException { //@AuthenticationPrincipal
         System.out.println("没有进入缓存");
-        Map<String,Object> map = new HashMap<String,Object>();
-        JSONObject param = new JSONObject();
-//        param.put("admin","admin");
-        map.put("test","cache");
-        redisUtils.save(map,100);
+//        Map<String,Object> map = new HashMap<String,Object>();
+//        JSONObject param = new JSONObject();
+////        param.put("admin","admin");
+//        map.put("test","cache");
+//        redisUtils.save(map,100);
         return "cache";
     }
 }
