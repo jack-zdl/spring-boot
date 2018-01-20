@@ -11,6 +11,7 @@ import com.ceying.chx.cpi.base.rm.login.vo.LoginVO;
 import com.ceying.chx.cpi.base.util.redis.RedisUtils;
 import com.ceying.chx.cpi.base.util.response.RespJson;
 import com.ceying.chx.cpi.base.util.response.RespJsonFactory;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -52,6 +53,7 @@ public class LoginController {
      * @return
      * @throws ParamException
      */
+    @ApiOperation(value="用户登录", notes="")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public RespJson login(HttpServletRequest request,  @Valid @RequestBody LoginVO loginVO, BindingResult aErrors) throws ParamException { //@AuthenticationPrincipal

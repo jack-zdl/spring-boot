@@ -5,10 +5,7 @@ import com.ceying.chx.cpi.base.interceptor.IPInterceptor;
 import com.ceying.chx.cpi.base.interceptor.TokenInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 
 /**
  * 功能说明: 为了使自定义的拦截器生效，需要注册拦截器到spring容器中，
@@ -21,9 +18,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * <br>
  */
 
-@Configuration
-@EnableWebMvc
-public class MyWebAppConfigurer   {  //extends WebMvcConfigurerAdapter
+//@Configuration
+//@EnableWebMvc
+public class MyWebAppConfigurer  {  //extends WebMvcConfigurerAdapter
+//    @Override
+//   public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("swagger-ui.html")
+//                .addResourceLocations("classpath:/META-INF/resources/");
+//
+//        registry.addResourceHandler("/webjars/**")
+//                .addResourceLocations("classpath:/META-INF/resources/webjars/");
+//    }
 
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {

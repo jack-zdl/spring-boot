@@ -16,6 +16,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.annotations.Cacheable;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ import java.io.IOException;
 @MapperScan("com.ceying.chx.cpi.base.rm")
 //@ServletComponentScan   // 这个注解可以让自制的listener或者filter 或者 servlet 有效
 @EnableConfigurationProperties({IPBlack.class})
+//@EnableWebMvc
 public class CpiBaseApplication {
 
 	public static void main(String[] args) {
