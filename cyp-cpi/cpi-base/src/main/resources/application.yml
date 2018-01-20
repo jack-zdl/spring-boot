@@ -15,6 +15,8 @@ server:
     max-threads: 100   # tomcat最大线程数，默认为200
 #       配置与客户端建立连接超时时间，从接收到连接后在配置的时间内还没有接收到客户端请求行时，将被认定为连接超时，默认为60000（60s）。
   connection-timeout: 50000
+  session:
+    timeout: 36000
   # 建立https连接
 #  server.port=8443
 #  server.ssl.enabled=true
@@ -29,10 +31,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://27.0.0.10:3307/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false  #jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
+    url: jdbc:mysql://27.0.0.1:3307/boss?useUnicode=true&characterEncoding=UTF-8&useSSL=false  #jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
     username: root
-    password: 1993212 #manage
-    driver-class-name: com.mysql.jdbc.Driver #oracle.jdbc.driver.OracleDriver
+    password: 1993212   #manage
+    driver-class-name: com.mysql.jdbc.Driver  # oracle.jdbc.driver.OracleDriver
     max-idle: 10
     max-wait: 1000
     min-idle : 5
@@ -58,6 +60,8 @@ spring:
   aop:
     auto: true
     proxy-target-class: true
+  session:
+    store-type: redis
 #  cache:
 #    ehcache:
 #      config:  classpath:config/ehcache-setting.xml

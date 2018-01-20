@@ -23,27 +23,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-//@Configuration
-//@EnableCaching // 启用缓存
-public class RedisConfig { //extends CachingConfigurerSupport
+@Configuration
+@EnableCaching // 启用缓存
+public class RedisConfig  extends CachingConfigurerSupport{
 
-//    /**
-//     * redis缓存管理器bean
-//     * @param redisTemplate
-//     * @return
-//     */
-//    @Bean
-//    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-//        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-//        // 设置缓存过期时间，秒
-//        rcm.setDefaultExpiration(60);
-//        return rcm;
-//    }
-//
-//    /**
-//     * redis的连接bean
-//     * @return
-//     */
+    /**
+     * redis缓存管理器bean
+     * @param redisTemplate
+     * @return
+     */
+    @SuppressWarnings("rawtypes")
+    @Bean
+    public CacheManager cacheManager(RedisTemplate redisTemplate) {
+        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
+        // 设置缓存过期时间，秒
+        rcm.setDefaultExpiration(60);
+        return rcm;
+    }
+
+    /**
+     * redis的连接bean
+     * @return
+     */
 //    public
 //    JedisConnectionFactory redisConnectionFactory(){
 //        JedisConnectionFactory jedisConnectionFactory =
@@ -51,12 +52,12 @@ public class RedisConfig { //extends CachingConfigurerSupport
 //        jedisConnectionFactory.afterPropertiesSet();
 //        return jedisConnectionFactory;
 //    }
-//
-//    /**
-//     *
-//     * @param factory
-//     * @return
-//     */
+
+    /**
+     *
+     * @param factory
+     * @return
+     */
 //    @Bean
 //    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
 //        RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
@@ -65,7 +66,20 @@ public class RedisConfig { //extends CachingConfigurerSupport
 //        setSerializer(redisTemplate);
 //        return redisTemplate;
 //    }
-//
+
+    @Bean
+    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
+        StringRedisTemplate template = new StringRedisTemplate(factory);
+        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;
+    }
+
 //    private void setSerializer(RedisTemplate<String, String> template) {
 //        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
 //        ObjectMapper om = new ObjectMapper();
@@ -75,26 +89,27 @@ public class RedisConfig { //extends CachingConfigurerSupport
 //        template.setKeySerializer(new StringRedisSerializer());
 //        template.setValueSerializer(jackson2JsonRedisSerializer);
 //    }
-//
-//        /**
-//         * 生成key的策略
-//         * @return
-//         */
-//    @Bean
-//    public KeyGenerator keyGenerator() {
-//        return new KeyGenerator() {
-//            @Override
-//            public Object generate(Object target, Method method, Object... params) {
-//                StringBuilder sb = new StringBuilder();
-//                sb.append(target.getClass().getName());
-//                sb.append(":"+method.getName());
-//                for (Object obj : params) {
-//                    sb.append(":"+obj.toString());
-//                }
-//                return sb.toString();
-//            }
-//        };
-//    }
+
+
+        /**
+         * 生成key的策略
+         * @return
+         */
+        @Bean
+        public KeyGenerator keyGenerator() {
+            return new KeyGenerator() {
+                @Override
+                public Object generate(Object target, Method method, Object... params) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(target.getClass().getName());
+                    sb.append(method.getName());
+                    for (Object obj : params) {
+                        sb.append(obj.toString());
+                    }
+                    return sb.toString();
+                }
+            };
+        }
 // ---------------------------------------------------------------
 //    /**
 //     * 管理缓存

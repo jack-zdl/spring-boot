@@ -21,13 +21,11 @@ import springfox.documentation.annotations.Cacheable;
 import java.io.IOException;
 
 @SpringBootApplication
-//@EnableDiscoveryClient
 @EnableTransactionManagement  // 事物配置
 //@EnableScheduling   //启动计划任务
 @MapperScan("com.ceying.chx.cpi.base.rm")
 //@ServletComponentScan   // 这个注解可以让自制的listener或者filter 或者 servlet 有效
 @EnableConfigurationProperties({IPBlack.class})
-//@EnableCaching
 public class CpiBaseApplication {
 
 	public static void main(String[] args) {

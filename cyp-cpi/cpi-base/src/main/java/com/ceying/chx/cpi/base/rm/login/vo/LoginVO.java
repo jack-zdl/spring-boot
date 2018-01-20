@@ -1,6 +1,7 @@
 package com.ceying.chx.cpi.base.rm.login.vo;
 
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * 功能说明:模拟登录对象 <br>
@@ -10,13 +11,15 @@ import javax.validation.constraints.NotNull;
  * <br>
  */
 
-public class LoginVO {
+public class LoginVO implements Serializable{
 
+    //序列化ID
+    private static final long serialVersionUID = -5809782578272943999L;
     /**
      * 用户名称
      */
     @NotNull
-    private String userName;
+    private String username;
 
     /**
      * 用户密码
@@ -29,18 +32,18 @@ public class LoginVO {
      * @return
      */
     public
-    String getUserName() {
-        return userName;
+    String getUsername() {
+        return username;
     }
 
     /**
      * 设置用户名称
-     * @param userName
+     * @param username
      * @return
      */
     public
-    LoginVO setUserName(String userName) {
-        this.userName = userName;
+    LoginVO setUsername(String username) {
+        this.username = username;
         return this;
     }
 
@@ -72,7 +75,7 @@ public class LoginVO {
     public
     String toString() {
         return "LoginVO{" +
-                "userName='" + userName + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

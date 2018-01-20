@@ -92,7 +92,7 @@ public class LoginServiceImpl  implements LoginService  {
 
         ResponseData responseData = new ResponseData();
         checkParam();
-        if(username.equals(loginVO.getUserName()) && password.equals(loginVO.getPassword())){
+        if(username.equals(loginVO.getUsername()) && password.equals(loginVO.getPassword())){
 //            UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(loginVO.getUserName(), loginVO.getPassword());
 //            final Authentication authentication = authenticationManager.authenticate(upToken);
 //            SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -109,7 +109,8 @@ public class LoginServiceImpl  implements LoginService  {
 //            final UserDetails userDetails = this.loadUserByUsername(loginVO.getUserName());
 //            final String token = JWT.sign(userDetails,60L* 1000L*30L);
 
-            responseData.setUserId(loginVO.getUserName());
+            responseData.setUserId(loginVO.getUsername());
+
 //            responseData.setToken(token);
             respJson = RespJsonFactory.buildSuccess(responseData);
         }else {

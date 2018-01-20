@@ -10,9 +10,7 @@
 
 	<modules>
 		<module>cpi-base</module>
-		<module>cpi-biz</module>
-		<module>cpi-external</module>
-		<module>cpi-customer</module>
+		<module>cpi-cache</module>
 	</modules>
 
 	<parent>

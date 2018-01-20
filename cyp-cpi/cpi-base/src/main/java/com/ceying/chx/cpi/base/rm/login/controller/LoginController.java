@@ -11,6 +11,7 @@ import com.ceying.chx.cpi.base.rm.login.vo.LoginVO;
 import com.ceying.chx.cpi.base.util.redis.RedisUtils;
 import com.ceying.chx.cpi.base.util.response.RespJson;
 import com.ceying.chx.cpi.base.util.response.RespJsonFactory;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import springfox.documentation.annotations.Cacheable;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,12 +61,14 @@ public class LoginController {
         System.out.println("没有进入缓存");
 //        String json = JSON.toJSONString(loginEntity, SerializerFeature.WriteMapNullValue);
         RespJson respJson = loginServiceImpl.login(loginVO);
+        HttpSession session = request.getSession();
+        session.setAttribute("user_session",loginVO);
         return respJson;
     }
 
-    @Cacheable(value = "info")
+
     @GetMapping("/cache")
-    @ResponseBody
+    @Cacheable(value = "info")
     public String  cache(HttpServletRequest request) throws ParamException, RedisConnectException { //@AuthenticationPrincipal
         System.out.println("没有进入缓存");
 //        Map<String,Object> map = new HashMap<String,Object>();
