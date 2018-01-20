@@ -2,14 +2,53 @@
 	"id": "2194587e-93ff-0c00-820b-d156d94a0ae9",
 	"name": "cpi",
 	"description": "",
-	"order": [
-		"45cced9f-6eb0-b28a-e237-ec83029a133f",
-		"59fa3e22-eda1-56ac-c17e-3a3a90aa3f55",
-		"c79aa1a8-62b5-0cb1-917c-2f1c6aa514a2",
-		"3d63c43b-9fd0-5c5a-e24e-7f50cb2d1e29"
+	"order": [],
+	"folders": [
+		{
+			"name": "base",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"order": [
+				"45cced9f-6eb0-b28a-e237-ec83029a133f",
+				"59fa3e22-eda1-56ac-c17e-3a3a90aa3f55",
+				"c79aa1a8-62b5-0cb1-917c-2f1c6aa514a2",
+				"3d63c43b-9fd0-5c5a-e24e-7f50cb2d1e29",
+				"8c6bc727-8528-16d3-e810-2f6b3022002c",
+				"892b1970-ce89-4045-60d7-29509d57082e",
+				"71a59620-76dd-d06a-ce2e-207c8952194b"
+			],
+			"owner": "1002171",
+			"folders_order": [],
+			"id": "96fc7be2-738f-46dc-2391-c69275330936"
+		},
+		{
+			"name": "cache",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"order": [
+				"64e8a6d6-7e10-6ce8-b73f-8e738dfff954"
+			],
+			"owner": "1002171",
+			"folders_order": [],
+			"id": "4b827c73-24b8-9ceb-1833-a9e4bce0707a"
+		},
+		{
+			"name": "redis",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"order": [
+				"672d9f80-456e-f50c-0db9-8a2d63a88043"
+			],
+			"owner": "1002171",
+			"folders_order": [],
+			"id": "1f39992c-3ebb-386b-b3a2-4b67a048e8c3"
+		}
 	],
-	"folders": [],
-	"folders_order": [],
+	"folders_order": [
+		"4b827c73-24b8-9ceb-1833-a9e4bce0707a",
+		"1f39992c-3ebb-386b-b3a2-4b67a048e8c3",
+		"96fc7be2-738f-46dc-2391-c69275330936"
+	],
 	"timestamp": 1509958572834,
 	"owner": "1002171",
 	"public": false,
@@ -35,7 +74,10 @@
 			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"isFromCollection": true,
+			"collectionRequestId": "3d63c43b-9fd0-5c5a-e24e-7f50cb2d1e29",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936"
 		},
 		{
 			"id": "45cced9f-6eb0-b28a-e237-ec83029a133f",
@@ -49,6 +91,7 @@
 				}
 			],
 			"url": "https://localhost:8443/cpi/base/org/list?userId=admin",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936",
 			"queryParams": [
 				{
 					"key": "userId",
@@ -86,6 +129,7 @@
 				}
 			],
 			"url": "localhost:8443/cpi/base/login",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -96,12 +140,155 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1516287512607,
+			"time": 1516448634471,
 			"name": "login",
 			"description": "",
 			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
 			"responses": [],
 			"rawModeData": "{\n\t\"username\" : \"user\",\n\t\"password\":\"123456\"\n}"
+		},
+		{
+			"id": "64e8a6d6-7e10-6ce8-b73f-8e738dfff954",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8201/cpi/cache/ehcache",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516450764117,
+			"name": "/cpi/cache/ehcache",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"responses": []
+		},
+		{
+			"id": "672d9f80-456e-f50c-0db9-8a2d63a88043",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8202/cpi/redis/cache",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1516453270814,
+			"name": "/cpi/redis/cache",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"responses": []
+		},
+		{
+			"id": "71a59620-76dd-d06a-ce2e-207c8952194b",
+			"name": "http://localhost:8443/cpi/base/tradeaccounts/list.do",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"method": "POST",
+			"headers": "Content-Type: application/json\nAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\n\t\"accountnumber\":\"10000300000320171011\",\n\t\"accountname\":\"北京供应商子公司\",\n\t\"accountcategory\":\"3\",\n\t\"accountstate\":\"1\",\n\t\"orgid\":\"0_100003000003\",\n\t\"operateflag\":\"3\",\n\t\"ledgeramount\":\"328.76\",\n\t\"approvestate\":\"2\",\n\t\"balance\":\"98562.37\",\n\t\"page\":\"1\",\n\t\"rows\":\"50\"\n}",
+			"url": "https://localhost:8443/cpi/base/tradeaccounts/list.do?userId=admin",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userId",
+					"value": "admin",
+					"equals": true
+				}
+			],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"key": "Authorization",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM"
+				}
+			],
+			"collection_id": "819a2ef3-e5e8-f672-0dec-20ebc5b9e97b",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936"
+		},
+		{
+			"id": "892b1970-ce89-4045-60d7-29509d57082e",
+			"name": "http://localhost:8443/cpi/base/organization/list.do",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"method": "POST",
+			"headers": "Content-Type: application/json\nAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\t\n\t\"org_code\":\"100001000003\",\n\t\"org_name\":\"北京银行\",\n\t\"org_cate\":\"1\",\n\t\"org_level\":\"2\",\n\t\"status\":\"0\",\n\t\"areaid\":\"1100\",\n\t\"parent_id\":\"0_100001000001\",\n\t\"manage_id\":\"0_100001000001\",\n\t\"page\":\"1\",\n\t\"rows\":\"50\"\n}",
+			"url": "https://localhost:8443/cpi/base/organization/list.do?userId=admin",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userId",
+					"value": "admin",
+					"equals": true
+				}
+			],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"key": "Authorization",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM"
+				}
+			],
+			"collection_id": "c28ee43f-fff1-e7ea-a826-e3070587ff1e",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936"
+		},
+		{
+			"id": "8c6bc727-8528-16d3-e810-2f6b3022002c",
+			"name": "http://localhost:8443/cpi/base/bigcontract/list.do",
+			"description": "",
+			"collectionId": "2194587e-93ff-0c00-820b-d156d94a0ae9",
+			"method": "POST",
+			"headers": "Content-Type: application/json\nAuthorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM",
+			"dataMode": "raw",
+			"data": [],
+			"rawModeData": "{\n\n\t\"corecompanyid\":\"0_100002000005\",\n\t\"bankid\":\"0_100001000005\",\n\t\"contractid\":\"tgb001\",\n\t\"lastoperationid\":\"103\",\n\t\"quotetemplate\":\"2\",\n\t\"page\":\"1\",\n\t\"rows\":\"50\"\n\n}",
+			"url": "https://localhost:8443/cpi/base/bigcontract/list.do?userId=admin",
+			"responses": [],
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userId",
+					"value": "admin",
+					"equals": true
+				}
+			],
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json"
+				},
+				{
+					"key": "Authorization",
+					"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1MTI3MTcyNjE1NzIsInBheWxvYWQiOiJ7XCJ1c2VyTmFtZVwiOlwiYWRtaW5cIixcInBhc3N3b3JkXCI6XCIxMjM0NTZcIn0ifQ.0L0Cwz0mA5SH9R7DHiVWO4a0VBQYFQA8cw5wU1OFzUM"
+				}
+			],
+			"collection_id": "9ce2d8e9-8955-aa10-ce77-b190550a7d54",
+			"isFromCollection": true,
+			"collectionRequestId": "9dc9c5a0-23e7-7f33-1773-67401831bef7",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936"
 		},
 		{
 			"id": "c79aa1a8-62b5-0cb1-917c-2f1c6aa514a2",
@@ -121,6 +308,7 @@
 				}
 			],
 			"url": "https://localhost:8443/login",
+			"folder": "96fc7be2-738f-46dc-2391-c69275330936",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
