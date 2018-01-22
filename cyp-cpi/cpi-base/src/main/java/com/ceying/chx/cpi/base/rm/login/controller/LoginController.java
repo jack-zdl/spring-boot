@@ -8,6 +8,7 @@ import com.ceying.chx.cpi.base.exception.RedisConnectException;
 import com.ceying.chx.cpi.base.rm.base.ProxyVo;
 import com.ceying.chx.cpi.base.rm.login.service.LoginService;
 import com.ceying.chx.cpi.base.rm.login.vo.LoginVO;
+import com.ceying.chx.cpi.base.rm.org.entity.User;
 import com.ceying.chx.cpi.base.util.redis.RedisUtils;
 import com.ceying.chx.cpi.base.util.response.RespJson;
 import com.ceying.chx.cpi.base.util.response.RespJsonFactory;
@@ -64,20 +65,20 @@ public class LoginController {
 //        String json = JSON.toJSONString(loginEntity, SerializerFeature.WriteMapNullValue);
         RespJson respJson = loginServiceImpl.login(loginVO);
         HttpSession session = request.getSession();
-        session.setAttribute("user_session",loginVO);
+        session.setAttribute("user_session","session");
         return respJson;
     }
 
-
+    /**
+     * 
+     * @param request
+     * @return
+     * @throws ParamException
+     * @throws RedisConnectException
+     */
     @GetMapping("/cache")
-    @Cacheable(value = "info")
     public String  cache(HttpServletRequest request) throws ParamException, RedisConnectException { //@AuthenticationPrincipal
-        System.out.println("没有进入缓存");
-//        Map<String,Object> map = new HashMap<String,Object>();
-//        JSONObject param = new JSONObject();
-////        param.put("admin","admin");
-//        map.put("test","cache");
-//        redisUtils.save(map,100);
-        return "cache";
+        String respJson = loginServiceImpl.cache(1);
+        return respJson;
     }
 }

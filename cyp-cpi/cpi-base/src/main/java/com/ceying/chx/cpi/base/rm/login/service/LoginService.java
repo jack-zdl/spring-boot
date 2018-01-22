@@ -2,6 +2,7 @@ package com.ceying.chx.cpi.base.rm.login.service;
 
 import com.ceying.chx.cpi.base.exception.ParamException;
 import com.ceying.chx.cpi.base.rm.login.vo.LoginVO;
+import com.ceying.chx.cpi.base.rm.org.entity.User;
 import com.ceying.chx.cpi.base.util.response.RespJson;
 
 import java.util.Map;
@@ -16,4 +17,6 @@ import java.util.Map;
 public interface LoginService {
 
     RespJson login(LoginVO loginVO) throws ParamException;
+
+    String cache(int id);
 }

@@ -14,6 +14,8 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -27,8 +29,10 @@ import java.io.IOException;
 @MapperScan("com.ceying.chx.cpi.base.rm")
 //@ServletComponentScan   // 这个注解可以让自制的listener或者filter 或者 servlet 有效
 @EnableConfigurationProperties({IPBlack.class})
-//@EnableWebMvc
+@EnableCaching
 public class CpiBaseApplication {
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CpiBaseApplication.class, args);

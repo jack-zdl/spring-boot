@@ -7,6 +7,7 @@ import com.ceying.chx.cpi.base.rm.login.service.LoginService;
 import com.ceying.chx.cpi.base.rm.login.vo.LoginVO;
 import com.ceying.chx.cpi.base.rm.login.vo.ResponseData;
 //import com.ceying.chx.cpi.base.security.JwtTokenUtil;
+import com.ceying.chx.cpi.base.rm.org.entity.User;
 import com.ceying.chx.cpi.base.security.JwtUserDetailsServiceImpl;
 import com.ceying.chx.cpi.base.util.response.RespJson;
 import com.ceying.chx.cpi.base.util.response.RespJsonFactory;
@@ -27,6 +28,8 @@ import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetailsService;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -117,6 +120,13 @@ public class LoginServiceImpl  implements LoginService  {
             throw new ParamException("用户登录异常");
         }
         return respJson;
+    }
+
+    @Override
+    @Cacheable(value = "role")
+    public String cache(int id) {
+        System.out.println("没进入缓存cache");
+        return "cache";
     }
 
     /**

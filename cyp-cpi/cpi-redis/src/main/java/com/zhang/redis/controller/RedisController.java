@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("cpi/redis")
 public class RedisController {
 
-    @GetMapping(value = "cache")
+    @GetMapping(value = "/cache")
     @Cacheable("redis-key")
     public String redis(){
         System.out.println("没走缓存");

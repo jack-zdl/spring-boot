@@ -26,7 +26,6 @@ import java.util.Map;
 @Configuration
 @EnableCaching // 启用缓存
 public class RedisConfig  extends CachingConfigurerSupport{
-
     /**
      * redis缓存管理器bean
      * @param redisTemplate
@@ -37,59 +36,27 @@ public class RedisConfig  extends CachingConfigurerSupport{
     public CacheManager cacheManager(RedisTemplate redisTemplate) {
         RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
         // 设置缓存过期时间，秒
-        rcm.setDefaultExpiration(60);
+        rcm.setDefaultExpiration(3000);
         return rcm;
     }
-
-    /**
-     * redis的连接bean
-     * @return
-     */
-//    public
-//    JedisConnectionFactory redisConnectionFactory(){
-//        JedisConnectionFactory jedisConnectionFactory =
-//                new JedisConnectionFactory();
-//        jedisConnectionFactory.afterPropertiesSet();
-//        return jedisConnectionFactory;
-//    }
-
-    /**
-     *
-     * @param factory
-     * @return
-     */
-//    @Bean
-//    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-//        RedisTemplate<String, String> redisTemplate = new RedisTemplate<String, String>();
-//        redisTemplate.setConnectionFactory(factory);
-//        redisTemplate.afterPropertiesSet();
-//        setSerializer(redisTemplate);
-//        return redisTemplate;
-//    }
 
     @Bean
     public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
         StringRedisTemplate template = new StringRedisTemplate(factory);
+        setSerializer(template);//设置序列化工具
+        template.afterPropertiesSet();
+        return template;
+    }
+
+    private void setSerializer(StringRedisTemplate template){
+        @SuppressWarnings({ "rawtypes", "unchecked" })
         Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
         ObjectMapper om = new ObjectMapper();
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
         template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.afterPropertiesSet();
-        return template;
     }
-
-//    private void setSerializer(RedisTemplate<String, String> template) {
-//        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-//        ObjectMapper om = new ObjectMapper();
-//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        jackson2JsonRedisSerializer.setObjectMapper(om);
-//        template.setKeySerializer(new StringRedisSerializer());
-//        template.setValueSerializer(jackson2JsonRedisSerializer);
-//    }
-
 
         /**
          * 生成key的策略
@@ -110,43 +77,5 @@ public class RedisConfig  extends CachingConfigurerSupport{
                 }
             };
         }
-// ---------------------------------------------------------------
-//    /**
-//     * 管理缓存
-//     *
-//     * @param redisTemplate
-//     * @return
-//     */
-//    @SuppressWarnings("rawtypes")
-//    @Bean
-//    public CacheManager cacheManager(RedisTemplate redisTemplate) {
-//        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-//        //设置缓存过期时间
-//        // rcm.setDefaultExpiration(60);//秒
-//        //设置value的过期时间
-//        Map<String, Long> map = new HashMap<String, Long>();
-//        map.put("token", 60L);
-//        rcm.setExpires(map);
-//        return rcm;
-//    }
-//
-//    /**
-//     * RedisTemplate配置
-//     *
-//     * @param factory
-//     * @return
-//     */
-//    @Bean
-//    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-//        StringRedisTemplate template = new StringRedisTemplate(factory);
-//        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-//        ObjectMapper om = new ObjectMapper();
-//        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-//        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-//        jackson2JsonRedisSerializer.setObjectMapper(om);
-//        template.setValueSerializer(jackson2JsonRedisSerializer);//如果key是String 需要配置一下StringSerializer,不然key会乱码 /XX/XX
-//        template.afterPropertiesSet();
-//        return template;
-//    }
 
 }
