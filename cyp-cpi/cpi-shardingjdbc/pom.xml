@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.cyp.chx</groupId>
-	<artifactId>cpi-databases</artifactId>
+	<artifactId>cpi-shardingjdbc</artifactId>
     <version>0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<description>Demo project for Spring Boot</description>
@@ -53,6 +53,7 @@
 			<artifactId>sharding-jdbc-core</artifactId>
 			<version>${sharding-jdbc.version}</version>
 		</dependency>
+		<!--这个使用spring的方式来连接数据库，如果不使用这个则可能必须使用使用基于ShardingDataSource的JDBC接口，进行jdbc原生开发-->
 		<dependency>
 			<groupId>com.dangdang</groupId>
 			<artifactId>sharding-jdbc-config-spring</artifactId>
@@ -91,8 +92,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-
 	</dependencies>
    <!--自动设置版本号-->
 	<dependencyManagement>

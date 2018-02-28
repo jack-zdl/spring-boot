@@ -1,18 +1,18 @@
 server:
-  port: 8443
+  port: 8080
   address: localhost
 
 spring:
   datasource:
     primary:
       name: testdb0
-      url: jdbc:mysql://127.0.0.1:3306/test0
+      url: jdbc:mysql://127.0.0.1:3306/springboot
       username: root
-      password: 1993212
+      password:
       driver-class-name: com.mysql.jdbc.Driver
     secondary:
       name: testdb1
-      url : jdbc:mysql://127.0.0.1:3307/test1
+      url : jdbc:mysql://127.0.0.1:3307/springboot
       username: root
       password: 1993212
       driver-class-name: com.mysql.jdbc.Driver
@@ -27,6 +27,8 @@ spring:
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
+
+
 
 logging:
   level:
