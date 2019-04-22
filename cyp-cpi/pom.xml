@@ -11,6 +11,7 @@
 	<modules>
 		<module>cpi-base</module>
 		<module>cpi-cache</module>
+		<module>cpi-myabtis-plus</module>
 	</modules>
 
 	<parent>

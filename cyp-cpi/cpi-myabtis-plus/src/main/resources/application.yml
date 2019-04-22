@@ -1,0 +1,34 @@
+server:
+  port: 8443
+  address: localhost
+  tomcat:
+  # tomcat的URI编码
+    uri-encoding: UTF-8
+    # 存放Tomcat的日志、Dump等文件的临时文件夹，默认为系统的tmp文件夹（如：C:\Users\Angel\AppData\Local\Temp）
+    basedir: C:/log
+    max-connections: 1000    # 设置最大连接数
+    max-threads: 100   # tomcat最大线程数，默认为200
+#       配置与客户端建立连接超时时间，从接收到连接后在配置的时间内还没有接收到客户端请求行时，将被认定为连接超时，默认为60000（60s）。
+  connection-timeout: 50000
+  session:
+    timeout: 36000
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url:  jdbc:mysql://39.105.18.214:3306/fungo_dev?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: affdB440821920A9
+    max-idle: 10
+    max-wait: 1000
+    min-idle : 5
+    initial-size : 5
+
+mybatis-plus:
+  mapper-locations: classpath:mapping/*.xml
+  global-config:
+    id-type: 3
+    field-strategy: 2
+    db-column-underline: true
+  typeAliasesPackage:  com.ceying.chx.cpi.base.rm.org.entity
+  configuration:
+    map-underscore-to-camel-case: true

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.chx.cpi.base.dao.MemberDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ceying.chx.cpi.base.entity.Member">
+        <id column="id" property="id"/>
+        <result column="salt" property="salt"/>
+        <result column="last_visit" property="lastVisit"/>
+        <result column="email" property="email"/>
+        <result column="sesion_token" property="sesionToken"/>
+        <result column="password" property="password"/>
+        <result column="exp" property="exp"/>
+        <result column="user_name" property="userName"/>
+        <result column="state" property="state"/>
+        <result column="has_password" property="hasPassword"/>
+        <result column="level" property="level"/>
+        <result column="email_verified" property="emailVerified"/>
+        <result column="mobile_phone_num" property="mobilePhoneNum"/>
+        <result column="avatar" property="avatar"/>
+        <result column="complete" property="complete"/>
+        <result column="gender" property="gender"/>
+        <result column="auth_data" property="authData"/>
+        <result column="import_from_parse" property="importFromParse"/>
+        <result column="mobile_phone_verified" property="mobilePhoneVerified"/>
+        <result column="followee_num" property="followeeNum"/>
+        <result column="publish_num" property="publishNum"/>
+        <result column="follower_num" property="followerNum"/>
+        <result column="report_num" property="reportNum"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="sign" property="sign"/>
+        <result column="member_no" property="memberNo"/>
+        <result column="qq_open_id" property="qqOpenId"/>
+        <result column="weixin_open_id" property="weixinOpenId"/>
+        <result column="weibo_open_id" property="weiboOpenId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, salt, last_visit AS lastVisit, email, sesion_token AS sesionToken, password, exp, user_name AS userName, state, has_password AS hasPassword, level, email_verified AS emailVerified, mobile_phone_num AS mobilePhoneNum, avatar, complete, gender, auth_data AS authData, import_from_parse AS importFromParse, mobile_phone_verified AS mobilePhoneVerified, followee_num AS followeeNum, publish_num AS publishNum, follower_num AS followerNum, report_num AS reportNum, created_at AS createdAt, updated_at AS updatedAt, sign, member_no AS memberNo, qq_open_id AS qqOpenId, weixin_open_id AS weixinOpenId, weibo_open_id AS weiboOpenId
+    </sql>
+
+<!--    <select id="getRandomMember"  parameterType="java.util.Map">-->
+<!--        &lt;!&ndash;  and id not in(-->
+<!--            select follower_id as id from t_member_follower  where member_id=#{memberId} and     state=1 or state=2-->
+<!--            UNION-->
+<!--            select member_id as id from t_member_follower  where state=4  and follower_id =#{memberId}-->
+<!--            ) &ndash;&gt;-->
+<!--        <![CDATA[-->
+<!--    	SELECT * FROM t_member where  type=2 and  id <> #{memberId}	-->
+<!--    	and id not in(-->
+<!--        select follower_id as id from t_member_follower  where member_id=#{memberId} and  state=1 or state=2 -->
+<!--        UNION -->
+<!--        select member_id as id from t_member_follower  where state=4  and follower_id =#{memberId} -->
+<!--        )	ORDER BY RAND()  LIMIT 0,#{pageSize}-->
+<!--			]]>-->
+<!--    </select>-->
+
+
+
+<!--	&lt;!&ndash; 已弃用 &ndash;&gt;-->
+<!--    <select id="getRecommendMembers" resultType="java.util.HashMap">-->
+<!--		SELECT d.member_id,sum(d.b) as pubconut FROM(-->
+<!--		 (SELECT * FROM-->
+<!--			(SELECT member_id,count(*) as b FROM t_game_evaluation GROUP BY member_id) as i WHERE i.b >= 10)-->
+<!--		UNION ALL-->
+<!--		(SELECT * FROM-->
+<!--			(SELECT member_id,count(*) as b FROM t_cmm_post GROUP BY member_id) as i WHERE i.b >= 10)-->
+<!--		)-->
+<!--		as d GROUP BY d.member_id  ORDER BY pubconut DESC LIMIT 10-->
+<!--			-->
+<!--	</select>-->
+
+
+<!--    &lt;!&ndash; 查询游戏评论表中发表评论大于14条，前10名的用户 &ndash;&gt;-->
+<!--    <select id="getRecommendMembersFromEvaluation" resultType="String">-->
+<!--	   SELECT-->
+<!--			member_id-->
+<!--		FROM-->
+<!--				( SELECT member_id, count( member_id ) AS ecnt FROM t_game_evaluation-->
+<!--                <where>-->
+<!--                    state = 0-->
+<!--                    <if test="wathMbsSet != null and wathMbsSet.size > 0">-->
+<!--                      AND   member_id NOT IN-->
+<!--                        <foreach item="item" index="index" collection="wathMbsSet" open="(" separator="," close=")">-->
+<!--                            #{item}-->
+<!--                        </foreach>-->
+<!--                    </if>-->
+<!--                </where>-->
+<!--				 GROUP BY member_id-->
+<!--                 ORDER BY ecnt desc-->
+<!--              ) AS evalcnt-->
+<!--		WHERE-->
+<!--            <![CDATA[ evalcnt.ecnt >= #{ecnt} ]]>-->
+<!--            <if test="limitSize > 0">-->
+<!--                LIMIT  #{limitSize}-->
+<!--            </if>-->
+<!--	</select>-->
+
+
+<!--    &lt;!&ndash; 查询文章表中发表文章大于10条，前10名的用户 &ndash;&gt;-->
+<!--    <select id="getRecommendMembersFromCmmPost" resultType="String">-->
+
+<!--	   SELECT-->
+<!--			member_id-->
+<!--		FROM-->
+<!--				( SELECT member_id, count( member_id ) AS ccnt FROM t_cmm_post-->
+<!--                    <where>-->
+<!--                        state = 1-->
+<!--                        <if test="wathMbsSet != null and wathMbsSet.size > 0">-->
+<!--                           AND  member_id NOT IN-->
+<!--                            <foreach item="item" index="index" collection="wathMbsSet" open="(" separator="," close=")">-->
+<!--                                #{item}-->
+<!--                            </foreach>-->
+<!--                        </if>-->
+<!--                    </where>-->
+<!--                     GROUP BY member_id-->
+<!--                     ORDER BY ccnt DESC-->
+<!--               ) AS cpstcnt-->
+<!--		WHERE-->
+<!--            <![CDATA[  cpstcnt.ccnt >= #{ccnt} ]]>-->
+<!--            <if test="limitSize > 0">-->
+<!--                LIMIT  #{limitSize}-->
+<!--            </if>-->
+
+<!--	</select>-->
+<!--	-->
+<!--	-->
+<!--	&lt;!&ndash; 用户精品帖子数 &ndash;&gt;-->
+<!--	 <select id="getHonorQualificationOfEssencePost" resultType="java.util.HashMap">-->
+<!--	 	SELECT * FROM-->
+<!--		(SELECT member_id,COUNT(*) as post_count,0 as eva_count,0 as like_count FROM t_cmm_post WHERE type = 2 GROUP BY member_id) -->
+<!--		a WHERE a.post_count >= 2-->
+<!--	</select>-->
+<!--	-->
+<!--	&lt;!&ndash; 用户游戏评测精品数 &ndash;&gt;-->
+<!--	 <select id="getHonorQualificationOfEssenceEva" resultType="java.util.HashMap">-->
+<!--	 	SELECT * FROM-->
+<!--		(SELECT member_id,0 as post_count,COUNT(*) as eva_count,0 as like_count FROM t_game_evaluation WHERE type = 2 GROUP BY member_id) -->
+<!--		a WHERE a.eva_count >= 2-->
+<!--	</select>-->
+<!--	-->
+<!--	&lt;!&ndash; 用户被点赞数 &ndash;&gt;-->
+<!--	 <select id="getHonorQualificationOfBeLiked" resultType="java.util.HashMap">-->
+<!--	 	SELECT * FROM-->
+<!--		(SELECT member_id,0 as post_count,0 as eva_count,COUNT(*) as like_count FROM t_bas_notice WHERE type in (0,1,2,7,11) AND member_id IS NOT NULL GROUP BY member_id) -->
+<!--		a WHERE a.like_count >= 50-->
+<!--	</select>-->
+
+
+<!--    &lt;!&ndash; 查询没有等级和fungo身份证图片的用户&ndash;&gt;-->
+<!--    <select id="queryMbWithoutLevelFungoImgs" >-->
+<!--              SELECT-->
+<!--                    id,-->
+<!--                    LEVEL,-->
+<!--                    user_name,-->
+<!--                    created_at,-->
+<!--                    mobile_phone_num-->
+<!--                FROM-->
+<!--                    t_member-->
+<!--                WHERE-->
+<!--                    id NOT IN ( SELECT DISTINCT mb_id FROM t_incent_ranked WHERE rank_type = 1 OR rank_type = 3 )-->
+<!--    </select>-->
+    
+</mapper>
