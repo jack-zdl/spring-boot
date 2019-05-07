@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="../css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+    <link href="../css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+
+    <!-- jqgrid-->
+    <link href="../css/ui.jqgridffe4.css?0820" rel="stylesheet">
+
+    <link href="../css/animate.min.css" rel="stylesheet">
+    <link href="../css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+
+    <script src="../js/jquery.min.js?v=2.1.4"></script>
+    <script src="../js/bootstrap.min.js?v=3.3.6"></script>
+    <script src="../js/jqgrid/i18n/grid.locale-cnffe4.js?0820"></script>
+    <script src="../js/jqgrid/jquery.jqGrid.minffe4.js?0820"></script>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content  animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <button class="btn btn-primary" type="button" onclick="notifyMsg()">通知</button>
+                    <button class="btn btn-primary" type="button" onclick="deleteMsg()">删除</button>
+                </div>
+                <div class="ibox-content">
+                    <div class="jqGrid_wrapper">
+                        <table  id="grid"></table>
+                        <div id="pager"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $.jgrid.defaults.styleUI="Bootstrap";
+        $("#grid").jqGrid(
+            {
+                url : '/recent/notifyList.do',
+                datatype : "json",
+                colNames : [ 'id','被通知者', '服务名', '服务地址', '失败次数'],
+                colModel : [
+                    {name : 'id',index : 'id',width : 30,hidden:true},
+                    {name : 'regist',index : 'regist',width : 55},
+                    {name : 'name',index : 'name',width : 50},
+                    {name : 'address',index : 'address',width : 50},
+                    {name : 'times',index : 'times',width : 30,}
+                ],
+                rowNum : 10,
+                rowList : [ 10, 20, 30 ],
+                pager : '#pager',
+                sortname : 'serviceName',
+                mtype : "post",
+                height:700,
+                multiselect:true,
+            });
+        $(window).bind("resize",function(){
+            resize();
+        });
+        function resize() {
+            var width=$(".jqGrid_wrapper").width();
+            $("#grid").setGridWidth(width);
+        }
+        resize();
+    })
+    var notifyMsg=function () {
+       var ids=  $("#grid").jqGrid("getGridParam",'selarrrow');
+        $.ajax({
+            type: 'POST',
+            url:'/recent/aysNotify.do',
+            data: {"ids":ids.join(",")},
+            success: function(result) {
+                alert(result);
+                $("#grid").trigger("reloadGrid");
+            },
+            error: function(result) {
+                alert(result);
+                $("#grid").trigger("reloadGrid");
+            },
+        });
+    }
+    var deleteMsg=function () {
+
+        var ids=  $("#grid").jqGrid("getGridParam",'selarrrow');
+        $.ajax({
+            url: "test.html", context: document.body, success: function(){
+                $(this).addClass("done");
+            }});
+        $.ajax({
+            type: 'POST',
+            url:'/recent/deletNotify.do',
+            data: {"ids":ids.join(",")},
+            success: function(result) {
+                alert(result);
+                $("#grid").trigger("reloadGrid");
+            },
+            error: function(result) {
+                alert(result);
+                $("#grid").trigger("reloadGrid");
+            },
+        });
+    }
+</script>
+
+</body>
+</html>

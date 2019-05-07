@@ -1,0 +1,20 @@
+server:
+  port: 8100
+redisConfig:
+  host: 47.104.87.10
+  password:
+  port: 6379
+  maxWaitMillis: 10000
+  maxIdle: 20
+  maxTotal: 500
+  numTestsPerEvictionRun: 3
+  testOnBorrow: true
+  testOnReturn: true
+  testWhileIdle: true
+spring:
+  session:
+    store-type: redis
+  mvc:
+    view:
+      prefix: /html/
+      suffix: .html
