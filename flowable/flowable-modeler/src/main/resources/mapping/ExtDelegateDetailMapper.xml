@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.flowable.modeler.extention.task.dao.ExtDelegateDetailDao">
+
+    <resultMap id="extDelegateDetailResultMap" type="com.ceying.flowable.modeler.extention.task.entity.ExtDelegateDetailEntity">
+        <id property="id" column="ID_" jdbcType="VARCHAR" />
+        <result property="delegateId" column="delegate_id_" jdbcType="VARCHAR" />
+        <result property="processKey" column="process_key_" jdbcType="VARCHAR" />
+        <result property="activityId" column="activity_id_" jdbcType="INTEGER" />
+        <result property="extField" column="ext_field_" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="addDelegateDetailResultMap" type="com.ceying.flowable.modeler.extention.task.query.ProcessDefinitionQuery">
+        <id property="name" column="name_" jdbcType="VARCHAR" />
+        <result property="processKey" column="process_key_" jdbcType="VARCHAR" />
+        <result property="version" column="version_" jdbcType="INTEGER" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.ceying.flowable.modeler.extention.task.entity.ExtDelegateDetailEntity">
+        INSERT INTO t_wf_ext_delegate_detail(ID_, delegate_id_, process_key_, activity_id_, ext_field_)
+        VALUES (#{id}, #{delegateId}, #{processKey}, #{activityId}, #{extField})
+    </insert>
+
+    <update id="update" parameterType="com.ceying.flowable.modeler.extention.task.entity.ExtDelegateDetailEntity">
+        UPDATE t_wf_ext_delegate_detail
+        SET ID_ = #{id}
+        <if test="delegateId != null and delegateId != ''">
+            ,delegate_id_ = #{delegateId}
+        </if>
+        <if test="processKey != null and processKey != ''">
+            ,process_key_ = #{processKey}
+        </if>
+        <if test="activityId != null and activityId != ''">
+            ,activity_id_ = #{activityId}
+        </if>
+        <if test="extField != null and extField != ''">
+            ,ext_field_ = #{extField}
+        </if>
+        WHERE ID_ = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.String">
+        DELETE FROM t_wf_ext_delegate_detail WHERE ID_ in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteByDelegateId" parameterType="java.lang.String">
+        DELETE FROM t_wf_ext_delegate_detail WHERE delegate_id_ in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="listExtDelegateDetail" parameterType="com.ceying.flowable.modeler.extention.task.entity.ExtDelegateDetailEntity" resultMap="extDelegateDetailResultMap">
+        select *
+          from  t_wf_ext_delegate_detail a
+        <where>
+        <if test="id != null and id != ''">
+            ID_ = #{id}
+        </if>
+        <if test="delegateId != null and delegateId != ''">
+            and delegate_id_ = #{delegateId}
+        </if>
+        <if test="processKey != null and processKey != ''">
+            and process_key_ = #{processKey}
+        </if>
+        <if test="activityId != null and activityId != ''">
+            and activity_id_ = #{activityId}
+        </if>
+        <if test="extField != null and extField != ''">
+            and ext_field_ = #{extField}
+        </if>
+        </where>
+        <if test="page != null and rows != null">
+            limit #{page}, #{rows}
+        </if>
+    </select>
+    <select id="listExtDelegateDetailAndKeyName" parameterType="com.ceying.flowable.modeler.extention.task.entity.ExtDelegateDetailEntity" resultType="com.ceying.flowable.modeler.extention.task.query.ExtDelegateDetailQuery">
+        select a.id_ as id, a.delegate_id_ as delegateId, a.process_key_ as processKey, a.activity_id_ as activityId, a.ext_field_ as extField, b.name_ as name, max(b.VERSION_) as version
+        from t_wf_ext_delegate_detail a,
+              act_re_procdef b
+        where a.process_key_ = b.key_
+            <if test="id != null and id != ''">
+                and a.ID_ = #{id}
+            </if>
+            <if test="delegateId != null and delegateId != ''">
+                and a.delegate_id_ = #{delegateId}
+            </if>
+            <if test="processKey != null and processKey != ''">
+                and a.process_key_ = #{processKey}
+            </if>
+            <if test="activityId != null and activityId != ''">
+                and a.activity_id_ = #{activityId}
+            </if>
+            <if test="extField != null and extField != ''">
+                and a.ext_field_ = #{extField}
+            </if>
+        GROUP by a.id_, a.delegate_id_, a.process_key_, a.activity_id_, a.ext_field_, b.name_
+        <if test="page != null and rows != null">
+            limit #{page}, #{rows}
+        </if>
+    </select>
+    <select id="getExtDelegateDetail" parameterType="java.lang.String" resultMap="extDelegateDetailResultMap">
+        select *
+        from  t_wf_ext_delegate_detail a
+        where 1 = 1
+        <if test="id != null and id != ''">
+            and ID_ = #{id}
+        </if>
+    </select>
+    <select id="count" parameterType="com.ceying.flowable.modeler.extention.task.entity.ExtDelegateDetailEntity" resultType="java.lang.Long">
+        select count(*)
+        from  t_wf_ext_delegate_detail a
+        <where>
+        <if test="id != null and id != ''">
+            ID_ = #{id}
+        </if>
+        <if test="delegateId != null and delegateId != ''">
+            and delegate_id_ = #{delegateId}
+        </if>
+        <if test="processKey != null and processKey != ''">
+            and process_key_ = #{processKey}
+        </if>
+        <if test="activityId != null and activityId != ''">
+            and activity_id_ = #{activityId}
+        </if>
+        <if test="extField != null and extField != ''">
+            and ext_field_ = #{extField}
+        </if>
+        </where>
+    </select>
+
+    <select id="listUnSavedProcessDefinition" parameterType="com.ceying.flowable.modeler.extention.task.vo.ProcessDefinitionVO" resultMap="addDelegateDetailResultMap">
+        select a.name_, a.KEY_ as process_key_, max(a.VERSION_) as VERSION_
+        from act_re_procdef a
+        where a.key_ not in
+          (select distinct c.process_key_
+           from t_wf_ext_delegate b
+                 inner join t_wf_ext_delegate_detail c on b.id_ = c.delegate_id_
+           where b.task_state_ in ('1', '2')
+             and b.user_id_ = #{userId})
+        group by a.name_, a.KEY_
+        limit #{page}, #{rows}
+    </select>
+
+    <select id="countUnSavedProcessDefinition" parameterType="com.ceying.flowable.modeler.extention.task.vo.ProcessDefinitionVO" resultType="java.lang.Long">
+        SELECT count(*)
+        FROM (select a.name_, a.KEY_ as process_key_, max(a.VERSION_) as VERSION_
+                from act_re_procdef a
+                where a.key_ not in
+                (select distinct c.process_key_
+                   from t_wf_ext_delegate b
+                         inner join t_wf_ext_delegate_detail c on b.id_ = c.delegate_id_
+                   where b.task_state_ in ('1', '2')
+                     and b.user_id_ = #{userId})
+                group by a.name_, a.KEY_) x
+    </select>
+
+</mapper>

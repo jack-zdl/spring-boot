@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.flowable.modeler.extention.task.dao.ExtHiDelegateCommentDao">
+
+    <insert id="insert" parameterType="com.ceying.flowable.modeler.extention.task.entity.ExtHiDelegateCommentEntity">
+        INSERT INTO t_wf_hi_ext_delegate_comment(ID_, task_id_, event_type_, user_id_, delegate_user_id_, process_key_, start_time_, end_time_, ext_field_)
+        VALUES (#{id}, #{taskId}, #{eventType}, #{userId}, #{delegateUserId}, #{processKey}, #{startTime}, #{endTime}, #{extField})
+    </insert>
+
+</mapper>

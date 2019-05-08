@@ -1,0 +1,31 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: scyp-eagleeye-consumer
+logging:
+  config: classpath:config/logback-spring.xml
+websocket:
+  port: 8085
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.jdbc.Driver
+#  session:
+#    store-type: redis
+#
+#mybatis:
+#  mapperLocations: classpath:mapping/*.xml
+#  type-aliases-package: com.ceying.system.vo,com.ceying.system.entity,com.ceying.system.query #批量增设别名
+#  config-location: classpath:config/mybatis-config.xml
+#mapper:
+#  mappers: com.ceying.common.util.mybatis.MyMapper
+#  not-empty: false
+#  identity: MYSQL
+#pagehelper:
+#  helperDialect: mysql
+#  reasonable: true
+#  supportMethodsArguments: true
+#  params: count=countSql
+

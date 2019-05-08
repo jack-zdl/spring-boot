@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!-- show flowable sql-->
+    <logger name="org.flowable.engine.impl.persistence.entity" level="DEBUG" />
+    <logger name="org.flowable.cmmn.engine.impl.persistence.entity" level="DEBUG" />
+    <logger name="org.flowable.content.engine.impl.persistence.entity" level="DEBUG" />
+    <logger name="org.flowable.dmn.engine.impl.persistence.entity" level="DEBUG" />
+    <logger name="org.flowable.form.engine.impl.persistence.entity" level="DEBUG" />
+    <logger name="org.flowable.idm.engine.impl.persistence.entity" level="DEBUG" />
+    <logger name="org.flowable.engine.common.impl.persistence.entity" level="DEBUG" />
+    <logger name="com.ceying.flowable.modeler.extention.task.dao" level="DEBUG" />
+</configuration>

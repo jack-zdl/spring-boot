@@ -1,0 +1,84 @@
+server:
+  port: 8184
+  context-path: /flowable-modeler
+spring:
+  application:
+    name: scyp-modeler
+# datasource:
+#    url: jdbc:oracle:thin:@127.0.0.1:1521:ORCL
+#    username: cyp
+#    password:  cyp
+#    driver-class-name: oracle.jdbc.driver.OracleDriver
+#  datasource:
+#    url: jdbc:mysql://192.168.6.253:3306/scyp-workflow?characterEncoding=utf8&useSSL=false #jdbc:mysql://127.0.0.1:3307/boss?characterEncoding=utf8&useSSL=false #jdbc:mysql://192.168.6.253:3306/ncyp?characterEncoding=utf8&useSSL=false
+#    username: root
+#    password:  manage #1993212 #manage
+#    driver-class-name: com.mysql.jdbc.Driver
+#  redis:
+#    host: localhost
+#    port: 6379
+#    timeout: 36000
+#    database: 0
+#    password:
+#  session:
+#    store-type: redis
+#  jackson:
+#      date-format: yyyy-MM-dd HH:mm:ss
+#      time-zone: GMT+8
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#  cache:
+#    type: redis
+#    database: 1
+#
+#eureka:
+#  client:
+#    healthcheck:    # eureka
+#      enabled: false
+#    serviceUrl:
+#      defaultZone: http://admin:admin@localhost:8081/eureka/
+#    proxy-host: localhost
+#  instance:
+#    prefer-ip-address: true
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+#    hostname: localhost
+
+admin:
+  rest:
+    process:
+      app:
+        name: Flowable Process app
+        description: Flowable Process REST config
+        host: http://localhost
+        port: ${server.port}
+        contextroot: ${server.context-path}
+        restroot: process-api
+    dmn:
+      app:
+        name: Flowable DMN app
+        description: Flowable DMN REST config
+        host: http://localhost
+        port: ${server.port}
+        contextroot: ${server.context-path}
+        restroot: dmn-api
+    form:
+      app:
+        name: Flowable Form app
+        description: Flowable Form REST config
+        host: http://localhost
+        port: ${server.port}
+        contextroot: ${server.context-path}
+        restroot: form-api
+    content:
+      app:
+        name: Flowable Content app
+        description: Flowable Content REST config
+        host: http://localhost
+        port: ${server.port}
+        contextroot: ${server.context-path}
+        restroot: content-api
+
+security:
+  encryption:
+    credentialsIVSpec: j8kdO2hejA9lKmm6
+    credentialsSecretSpec: 9FGl73ngxcOoJvmL
