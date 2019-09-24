@@ -65,8 +65,8 @@
         </javaClientGenerator>
 
         <!-- 配置表信息 -->
-        <table tableName="*" domainObjectName="TransEntity" > </table>
-        <!--<table tableName="TSYS_USER_LOGIN" domainObjectName="LoginUser" > </table>-->
+<!--        <table tableName="*" domainObjectName="TransEntity" > </table>-->
+        <table tableName="t_mall_seckill_order" domainObjectName="MemberInfo" > </table>
         <!--<table tableName="t_article_type" domainObjectName="ArticleType" > </table>-->
 
     </context>

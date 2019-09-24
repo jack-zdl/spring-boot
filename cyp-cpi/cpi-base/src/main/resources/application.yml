@@ -30,15 +30,25 @@ server:
 #    key-store: C:/Program Files/Java/https/keystore   #位置 y应该是https的签名证书的存储位置
 
 spring:
+#  datasource:
+#    url: jdbc:mysql://27.0.0.1:3307/boss?useUnicode=true&characterEncoding=UTF-8&useSSL=false  #jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
+#    username: root
+#    password: 1993212   #manage
+#    driver-class-name: com.mysql.jdbc.Driver  # oracle.jdbc.driver.OracleDriver
+#    max-idle: 10
+#    max-wait: 1000
+#    min-idle : 5
+#    initial-size : 5
   datasource:
-    url: jdbc:mysql://27.0.0.1:3307/boss?useUnicode=true&characterEncoding=UTF-8&useSSL=false  #jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
-    username: root
-    password: 1993212   #manage
+    url: jdbc:mysql://rm-bp145sizta1yg4585xo.mysql.rds.aliyuncs.com:3306/fungo_cloud_uat?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai  #jdbc:mysql://192.168.6.253:3306/ncyp?useUnicode=true&characterEncoding=UTF-8&useSSL=false #jdbc:oracle:thin:@127.0.0.1:1521:ORCL  #192.168.6.253
+    username: fungo_uat
+    password: b1dcfae36fa84Db88479efbd36b16e   #manage
     driver-class-name: com.mysql.jdbc.Driver  # oracle.jdbc.driver.OracleDriver
     max-idle: 10
     max-wait: 1000
     min-idle : 5
     initial-size : 5
+
 
   redis:
     host: localhost
