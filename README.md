@@ -4,3 +4,5 @@
     1 cpi-base 基础spring boot服务
     2 cpi-cache spring boot + ehcache 工程
     3 cpi-redis spring boot + redis缓存 工程
+	d
+	adadqa
