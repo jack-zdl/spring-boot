@@ -66,7 +66,8 @@
 
         <!-- 配置表信息 -->
 <!--        <table tableName="*" domainObjectName="TransEntity" > </table>-->
-        <table tableName="t_mall_seckill_order" domainObjectName="MemberInfo" > </table>
+        <table tableName="t_member_circle" domainObjectName="MmeberCircle" > </table>
+<!--        <table tableName="t_bas_tag_group" domainObjectName="BasTagGroup" > </table>-->
         <!--<table tableName="t_article_type" domainObjectName="ArticleType" > </table>-->
 
     </context>

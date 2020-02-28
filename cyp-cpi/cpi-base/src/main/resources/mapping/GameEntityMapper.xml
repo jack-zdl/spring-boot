@@ -1,0 +1,1202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.chx.cpi.base.rm.base.dao  # ÔÝÊ±²»ÐèÒªdaoÉú³É.GameEntityMapper">
+  <resultMap id="BaseResultMap" type="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="video" jdbcType="VARCHAR" property="video" />
+    <result column="apk" jdbcType="VARCHAR" property="apk" />
+    <result column="download_num" jdbcType="INTEGER" property="downloadNum" />
+    <result column="itunes_id" jdbcType="VARCHAR" property="itunesId" />
+    <result column="compatibility" jdbcType="VARCHAR" property="compatibility" />
+    <result column="version_child" jdbcType="VARCHAR" property="versionChild" />
+    <result column="game_size" jdbcType="BIGINT" property="gameSize" />
+    <result column="release_image" jdbcType="VARCHAR" property="releaseImage" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="cover_image" jdbcType="VARCHAR" property="coverImage" />
+    <result column="image_ratio" jdbcType="INTEGER" property="imageRatio" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="edited_at" jdbcType="TIMESTAMP" property="editedAt" />
+    <result column="community_id" jdbcType="VARCHAR" property="communityId" />
+    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+    <result column="origin" jdbcType="VARCHAR" property="origin" />
+    <result column="recommend_num" jdbcType="INTEGER" property="recommendNum" />
+    <result column="unrecommend_num" jdbcType="INTEGER" property="unrecommendNum" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="developer" jdbcType="VARCHAR" property="developer" />
+    <result column="version_main" jdbcType="VARCHAR" property="versionMain" />
+    <result column="isbn_id" jdbcType="VARCHAR" property="isbnId" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="ios_state" jdbcType="INTEGER" property="iosState" />
+    <result column="android_state" jdbcType="INTEGER" property="androidState" />
+    <result column="developer_id" jdbcType="VARCHAR" property="developerId" />
+    <result column="test_number" jdbcType="INTEGER" property="testNumber" />
+    <result column="tset_date" jdbcType="TIMESTAMP" property="tsetDate" />
+    <result column="isbn_image" jdbcType="VARCHAR" property="isbnImage" />
+    <result column="copyright_id" jdbcType="VARCHAR" property="copyrightId" />
+    <result column="copyright_image" jdbcType="VARCHAR" property="copyrightImage" />
+    <result column="credentials" jdbcType="VARCHAR" property="credentials" />
+    <result column="issue_id" jdbcType="VARCHAR" property="issueId" />
+    <result column="android_package_name" jdbcType="VARCHAR" property="androidPackageName" />
+    <result column="comment_num" jdbcType="INTEGER" property="commentNum" />
+    <result column="boom_download_num" jdbcType="BIGINT" property="boomDownloadNum" />
+    <result column="game_idt_sn" jdbcType="BIGINT" property="gameIdtSn" />
+    <result column="tab_game_id" jdbcType="VARCHAR" property="tabGameId" />
+    <result column="google_game_id" jdbcType="VARCHAR" property="googleGameId" />
+    <result column="video_url_latest" jdbcType="BIT" property="videoUrlLatest" />
+    <result column="cost_free" jdbcType="BIT" property="costFree" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="android_status_desc" jdbcType="VARCHAR" property="androidStatusDesc" />
+    <result column="ios_status_desc" jdbcType="VARCHAR" property="iosStatusDesc" />
+    <result column="google_deputy_name" jdbcType="VARCHAR" property="googleDeputyName" />
+    <result column="can_fast" jdbcType="BIT" property="canFast" />
+    <result column="week_download_num" jdbcType="BIGINT" property="weekDownloadNum" />
+    <result column="score" jdbcType="DOUBLE" property="score" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    <result column="tags" jdbcType="LONGVARCHAR" property="tags" />
+    <result column="update_log" jdbcType="LONGVARCHAR" property="updateLog" />
+    <result column="images" jdbcType="LONGVARCHAR" property="images" />
+    <result column="fungo_talk" jdbcType="LONGVARCHAR" property="fungoTalk" />
+    <result column="intro" jdbcType="LONGVARCHAR" property="intro" />
+    <result column="detail" jdbcType="LONGVARCHAR" property="detail" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, video, apk, download_num, itunes_id, compatibility, version_child, game_size, 
+    release_image, `name`, cover_image, image_ratio, icon, edited_at, community_id, member_id, 
+    origin, recommend_num, unrecommend_num, `state`, developer, version_main, isbn_id, 
+    created_at, updated_at, created_by, updated_by, ios_state, android_state, developer_id, 
+    test_number, tset_date, isbn_image, copyright_id, copyright_image, credentials, issue_id, 
+    android_package_name, comment_num, boom_download_num, game_idt_sn, tab_game_id, google_game_id, 
+    video_url_latest, cost_free, company, publisher, android_status_desc, ios_status_desc, 
+    google_deputy_name, can_fast, week_download_num, score
+  </sql>
+  <sql id="Blob_Column_List">
+    tags, update_log, images, fungo_talk, intro, detail
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntityExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_game
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_game
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntityExample">
+    delete from t_game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    insert into t_game (id, video, apk, 
+      download_num, itunes_id, compatibility, 
+      version_child, game_size, release_image, 
+      `name`, cover_image, image_ratio, 
+      icon, edited_at, community_id, 
+      member_id, origin, recommend_num, 
+      unrecommend_num, `state`, developer, 
+      version_main, isbn_id, created_at, 
+      updated_at, created_by, updated_by, 
+      ios_state, android_state, developer_id, 
+      test_number, tset_date, isbn_image, 
+      copyright_id, copyright_image, credentials, 
+      issue_id, android_package_name, comment_num, 
+      boom_download_num, game_idt_sn, tab_game_id, 
+      google_game_id, video_url_latest, cost_free, 
+      company, publisher, android_status_desc, 
+      ios_status_desc, google_deputy_name, can_fast, 
+      week_download_num, score, tags, 
+      update_log, images, fungo_talk, 
+      intro, detail)
+    values (#{id,jdbcType=VARCHAR}, #{video,jdbcType=VARCHAR}, #{apk,jdbcType=VARCHAR}, 
+      #{downloadNum,jdbcType=INTEGER}, #{itunesId,jdbcType=VARCHAR}, #{compatibility,jdbcType=VARCHAR}, 
+      #{versionChild,jdbcType=VARCHAR}, #{gameSize,jdbcType=BIGINT}, #{releaseImage,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{coverImage,jdbcType=VARCHAR}, #{imageRatio,jdbcType=INTEGER}, 
+      #{icon,jdbcType=VARCHAR}, #{editedAt,jdbcType=TIMESTAMP}, #{communityId,jdbcType=VARCHAR}, 
+      #{memberId,jdbcType=VARCHAR}, #{origin,jdbcType=VARCHAR}, #{recommendNum,jdbcType=INTEGER}, 
+      #{unrecommendNum,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{developer,jdbcType=VARCHAR}, 
+      #{versionMain,jdbcType=VARCHAR}, #{isbnId,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{createdBy,jdbcType=VARCHAR}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{iosState,jdbcType=INTEGER}, #{androidState,jdbcType=INTEGER}, #{developerId,jdbcType=VARCHAR}, 
+      #{testNumber,jdbcType=INTEGER}, #{tsetDate,jdbcType=TIMESTAMP}, #{isbnImage,jdbcType=VARCHAR}, 
+      #{copyrightId,jdbcType=VARCHAR}, #{copyrightImage,jdbcType=VARCHAR}, #{credentials,jdbcType=VARCHAR}, 
+      #{issueId,jdbcType=VARCHAR}, #{androidPackageName,jdbcType=VARCHAR}, #{commentNum,jdbcType=INTEGER}, 
+      #{boomDownloadNum,jdbcType=BIGINT}, #{gameIdtSn,jdbcType=BIGINT}, #{tabGameId,jdbcType=VARCHAR}, 
+      #{googleGameId,jdbcType=VARCHAR}, #{videoUrlLatest,jdbcType=BIT}, #{costFree,jdbcType=BIT}, 
+      #{company,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, #{androidStatusDesc,jdbcType=VARCHAR}, 
+      #{iosStatusDesc,jdbcType=VARCHAR}, #{googleDeputyName,jdbcType=VARCHAR}, #{canFast,jdbcType=BIT}, 
+      #{weekDownloadNum,jdbcType=BIGINT}, #{score,jdbcType=DOUBLE}, #{tags,jdbcType=LONGVARCHAR}, 
+      #{updateLog,jdbcType=LONGVARCHAR}, #{images,jdbcType=LONGVARCHAR}, #{fungoTalk,jdbcType=LONGVARCHAR}, 
+      #{intro,jdbcType=LONGVARCHAR}, #{detail,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    insert into t_game
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="video != null">
+        video,
+      </if>
+      <if test="apk != null">
+        apk,
+      </if>
+      <if test="downloadNum != null">
+        download_num,
+      </if>
+      <if test="itunesId != null">
+        itunes_id,
+      </if>
+      <if test="compatibility != null">
+        compatibility,
+      </if>
+      <if test="versionChild != null">
+        version_child,
+      </if>
+      <if test="gameSize != null">
+        game_size,
+      </if>
+      <if test="releaseImage != null">
+        release_image,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="coverImage != null">
+        cover_image,
+      </if>
+      <if test="imageRatio != null">
+        image_ratio,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="editedAt != null">
+        edited_at,
+      </if>
+      <if test="communityId != null">
+        community_id,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="origin != null">
+        origin,
+      </if>
+      <if test="recommendNum != null">
+        recommend_num,
+      </if>
+      <if test="unrecommendNum != null">
+        unrecommend_num,
+      </if>
+      <if test="state != null">
+        `state`,
+      </if>
+      <if test="developer != null">
+        developer,
+      </if>
+      <if test="versionMain != null">
+        version_main,
+      </if>
+      <if test="isbnId != null">
+        isbn_id,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="iosState != null">
+        ios_state,
+      </if>
+      <if test="androidState != null">
+        android_state,
+      </if>
+      <if test="developerId != null">
+        developer_id,
+      </if>
+      <if test="testNumber != null">
+        test_number,
+      </if>
+      <if test="tsetDate != null">
+        tset_date,
+      </if>
+      <if test="isbnImage != null">
+        isbn_image,
+      </if>
+      <if test="copyrightId != null">
+        copyright_id,
+      </if>
+      <if test="copyrightImage != null">
+        copyright_image,
+      </if>
+      <if test="credentials != null">
+        credentials,
+      </if>
+      <if test="issueId != null">
+        issue_id,
+      </if>
+      <if test="androidPackageName != null">
+        android_package_name,
+      </if>
+      <if test="commentNum != null">
+        comment_num,
+      </if>
+      <if test="boomDownloadNum != null">
+        boom_download_num,
+      </if>
+      <if test="gameIdtSn != null">
+        game_idt_sn,
+      </if>
+      <if test="tabGameId != null">
+        tab_game_id,
+      </if>
+      <if test="googleGameId != null">
+        google_game_id,
+      </if>
+      <if test="videoUrlLatest != null">
+        video_url_latest,
+      </if>
+      <if test="costFree != null">
+        cost_free,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="androidStatusDesc != null">
+        android_status_desc,
+      </if>
+      <if test="iosStatusDesc != null">
+        ios_status_desc,
+      </if>
+      <if test="googleDeputyName != null">
+        google_deputy_name,
+      </if>
+      <if test="canFast != null">
+        can_fast,
+      </if>
+      <if test="weekDownloadNum != null">
+        week_download_num,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="tags != null">
+        tags,
+      </if>
+      <if test="updateLog != null">
+        update_log,
+      </if>
+      <if test="images != null">
+        images,
+      </if>
+      <if test="fungoTalk != null">
+        fungo_talk,
+      </if>
+      <if test="intro != null">
+        intro,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="video != null">
+        #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="apk != null">
+        #{apk,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadNum != null">
+        #{downloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="itunesId != null">
+        #{itunesId,jdbcType=VARCHAR},
+      </if>
+      <if test="compatibility != null">
+        #{compatibility,jdbcType=VARCHAR},
+      </if>
+      <if test="versionChild != null">
+        #{versionChild,jdbcType=VARCHAR},
+      </if>
+      <if test="gameSize != null">
+        #{gameSize,jdbcType=BIGINT},
+      </if>
+      <if test="releaseImage != null">
+        #{releaseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImage != null">
+        #{coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="imageRatio != null">
+        #{imageRatio,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="editedAt != null">
+        #{editedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="communityId != null">
+        #{communityId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendNum != null">
+        #{recommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="unrecommendNum != null">
+        #{unrecommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="developer != null">
+        #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="versionMain != null">
+        #{versionMain,jdbcType=VARCHAR},
+      </if>
+      <if test="isbnId != null">
+        #{isbnId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="iosState != null">
+        #{iosState,jdbcType=INTEGER},
+      </if>
+      <if test="androidState != null">
+        #{androidState,jdbcType=INTEGER},
+      </if>
+      <if test="developerId != null">
+        #{developerId,jdbcType=VARCHAR},
+      </if>
+      <if test="testNumber != null">
+        #{testNumber,jdbcType=INTEGER},
+      </if>
+      <if test="tsetDate != null">
+        #{tsetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isbnImage != null">
+        #{isbnImage,jdbcType=VARCHAR},
+      </if>
+      <if test="copyrightId != null">
+        #{copyrightId,jdbcType=VARCHAR},
+      </if>
+      <if test="copyrightImage != null">
+        #{copyrightImage,jdbcType=VARCHAR},
+      </if>
+      <if test="credentials != null">
+        #{credentials,jdbcType=VARCHAR},
+      </if>
+      <if test="issueId != null">
+        #{issueId,jdbcType=VARCHAR},
+      </if>
+      <if test="androidPackageName != null">
+        #{androidPackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNum != null">
+        #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="boomDownloadNum != null">
+        #{boomDownloadNum,jdbcType=BIGINT},
+      </if>
+      <if test="gameIdtSn != null">
+        #{gameIdtSn,jdbcType=BIGINT},
+      </if>
+      <if test="tabGameId != null">
+        #{tabGameId,jdbcType=VARCHAR},
+      </if>
+      <if test="googleGameId != null">
+        #{googleGameId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrlLatest != null">
+        #{videoUrlLatest,jdbcType=BIT},
+      </if>
+      <if test="costFree != null">
+        #{costFree,jdbcType=BIT},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="androidStatusDesc != null">
+        #{androidStatusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="iosStatusDesc != null">
+        #{iosStatusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="googleDeputyName != null">
+        #{googleDeputyName,jdbcType=VARCHAR},
+      </if>
+      <if test="canFast != null">
+        #{canFast,jdbcType=BIT},
+      </if>
+      <if test="weekDownloadNum != null">
+        #{weekDownloadNum,jdbcType=BIGINT},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="tags != null">
+        #{tags,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="updateLog != null">
+        #{updateLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="images != null">
+        #{images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fungoTalk != null">
+        #{fungoTalk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="intro != null">
+        #{intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntityExample" resultType="java.lang.Long">
+    select count(*) from t_game
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_game
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.video != null">
+        video = #{record.video,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apk != null">
+        apk = #{record.apk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.downloadNum != null">
+        download_num = #{record.downloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.itunesId != null">
+        itunes_id = #{record.itunesId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.compatibility != null">
+        compatibility = #{record.compatibility,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionChild != null">
+        version_child = #{record.versionChild,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gameSize != null">
+        game_size = #{record.gameSize,jdbcType=BIGINT},
+      </if>
+      <if test="record.releaseImage != null">
+        release_image = #{record.releaseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverImage != null">
+        cover_image = #{record.coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imageRatio != null">
+        image_ratio = #{record.imageRatio,jdbcType=INTEGER},
+      </if>
+      <if test="record.icon != null">
+        icon = #{record.icon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.editedAt != null">
+        edited_at = #{record.editedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.communityId != null">
+        community_id = #{record.communityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.origin != null">
+        origin = #{record.origin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recommendNum != null">
+        recommend_num = #{record.recommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.unrecommendNum != null">
+        unrecommend_num = #{record.unrecommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null">
+        `state` = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.developer != null">
+        developer = #{record.developer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionMain != null">
+        version_main = #{record.versionMain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isbnId != null">
+        isbn_id = #{record.isbnId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedBy != null">
+        updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iosState != null">
+        ios_state = #{record.iosState,jdbcType=INTEGER},
+      </if>
+      <if test="record.androidState != null">
+        android_state = #{record.androidState,jdbcType=INTEGER},
+      </if>
+      <if test="record.developerId != null">
+        developer_id = #{record.developerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.testNumber != null">
+        test_number = #{record.testNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.tsetDate != null">
+        tset_date = #{record.tsetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isbnImage != null">
+        isbn_image = #{record.isbnImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.copyrightId != null">
+        copyright_id = #{record.copyrightId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.copyrightImage != null">
+        copyright_image = #{record.copyrightImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.credentials != null">
+        credentials = #{record.credentials,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issueId != null">
+        issue_id = #{record.issueId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.androidPackageName != null">
+        android_package_name = #{record.androidPackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.commentNum != null">
+        comment_num = #{record.commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.boomDownloadNum != null">
+        boom_download_num = #{record.boomDownloadNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.gameIdtSn != null">
+        game_idt_sn = #{record.gameIdtSn,jdbcType=BIGINT},
+      </if>
+      <if test="record.tabGameId != null">
+        tab_game_id = #{record.tabGameId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.googleGameId != null">
+        google_game_id = #{record.googleGameId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.videoUrlLatest != null">
+        video_url_latest = #{record.videoUrlLatest,jdbcType=BIT},
+      </if>
+      <if test="record.costFree != null">
+        cost_free = #{record.costFree,jdbcType=BIT},
+      </if>
+      <if test="record.company != null">
+        company = #{record.company,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisher != null">
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.androidStatusDesc != null">
+        android_status_desc = #{record.androidStatusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iosStatusDesc != null">
+        ios_status_desc = #{record.iosStatusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.googleDeputyName != null">
+        google_deputy_name = #{record.googleDeputyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.canFast != null">
+        can_fast = #{record.canFast,jdbcType=BIT},
+      </if>
+      <if test="record.weekDownloadNum != null">
+        week_download_num = #{record.weekDownloadNum,jdbcType=BIGINT},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=DOUBLE},
+      </if>
+      <if test="record.tags != null">
+        tags = #{record.tags,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.updateLog != null">
+        update_log = #{record.updateLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.images != null">
+        images = #{record.images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.fungoTalk != null">
+        fungo_talk = #{record.fungoTalk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.intro != null">
+        intro = #{record.intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.detail != null">
+        detail = #{record.detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update t_game
+    set id = #{record.id,jdbcType=VARCHAR},
+      video = #{record.video,jdbcType=VARCHAR},
+      apk = #{record.apk,jdbcType=VARCHAR},
+      download_num = #{record.downloadNum,jdbcType=INTEGER},
+      itunes_id = #{record.itunesId,jdbcType=VARCHAR},
+      compatibility = #{record.compatibility,jdbcType=VARCHAR},
+      version_child = #{record.versionChild,jdbcType=VARCHAR},
+      game_size = #{record.gameSize,jdbcType=BIGINT},
+      release_image = #{record.releaseImage,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      cover_image = #{record.coverImage,jdbcType=VARCHAR},
+      image_ratio = #{record.imageRatio,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      edited_at = #{record.editedAt,jdbcType=TIMESTAMP},
+      community_id = #{record.communityId,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=VARCHAR},
+      origin = #{record.origin,jdbcType=VARCHAR},
+      recommend_num = #{record.recommendNum,jdbcType=INTEGER},
+      unrecommend_num = #{record.unrecommendNum,jdbcType=INTEGER},
+      `state` = #{record.state,jdbcType=INTEGER},
+      developer = #{record.developer,jdbcType=VARCHAR},
+      version_main = #{record.versionMain,jdbcType=VARCHAR},
+      isbn_id = #{record.isbnId,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      ios_state = #{record.iosState,jdbcType=INTEGER},
+      android_state = #{record.androidState,jdbcType=INTEGER},
+      developer_id = #{record.developerId,jdbcType=VARCHAR},
+      test_number = #{record.testNumber,jdbcType=INTEGER},
+      tset_date = #{record.tsetDate,jdbcType=TIMESTAMP},
+      isbn_image = #{record.isbnImage,jdbcType=VARCHAR},
+      copyright_id = #{record.copyrightId,jdbcType=VARCHAR},
+      copyright_image = #{record.copyrightImage,jdbcType=VARCHAR},
+      credentials = #{record.credentials,jdbcType=VARCHAR},
+      issue_id = #{record.issueId,jdbcType=VARCHAR},
+      android_package_name = #{record.androidPackageName,jdbcType=VARCHAR},
+      comment_num = #{record.commentNum,jdbcType=INTEGER},
+      boom_download_num = #{record.boomDownloadNum,jdbcType=BIGINT},
+      game_idt_sn = #{record.gameIdtSn,jdbcType=BIGINT},
+      tab_game_id = #{record.tabGameId,jdbcType=VARCHAR},
+      google_game_id = #{record.googleGameId,jdbcType=VARCHAR},
+      video_url_latest = #{record.videoUrlLatest,jdbcType=BIT},
+      cost_free = #{record.costFree,jdbcType=BIT},
+      company = #{record.company,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      android_status_desc = #{record.androidStatusDesc,jdbcType=VARCHAR},
+      ios_status_desc = #{record.iosStatusDesc,jdbcType=VARCHAR},
+      google_deputy_name = #{record.googleDeputyName,jdbcType=VARCHAR},
+      can_fast = #{record.canFast,jdbcType=BIT},
+      week_download_num = #{record.weekDownloadNum,jdbcType=BIGINT},
+      score = #{record.score,jdbcType=DOUBLE},
+      tags = #{record.tags,jdbcType=LONGVARCHAR},
+      update_log = #{record.updateLog,jdbcType=LONGVARCHAR},
+      images = #{record.images,jdbcType=LONGVARCHAR},
+      fungo_talk = #{record.fungoTalk,jdbcType=LONGVARCHAR},
+      intro = #{record.intro,jdbcType=LONGVARCHAR},
+      detail = #{record.detail,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_game
+    set id = #{record.id,jdbcType=VARCHAR},
+      video = #{record.video,jdbcType=VARCHAR},
+      apk = #{record.apk,jdbcType=VARCHAR},
+      download_num = #{record.downloadNum,jdbcType=INTEGER},
+      itunes_id = #{record.itunesId,jdbcType=VARCHAR},
+      compatibility = #{record.compatibility,jdbcType=VARCHAR},
+      version_child = #{record.versionChild,jdbcType=VARCHAR},
+      game_size = #{record.gameSize,jdbcType=BIGINT},
+      release_image = #{record.releaseImage,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      cover_image = #{record.coverImage,jdbcType=VARCHAR},
+      image_ratio = #{record.imageRatio,jdbcType=INTEGER},
+      icon = #{record.icon,jdbcType=VARCHAR},
+      edited_at = #{record.editedAt,jdbcType=TIMESTAMP},
+      community_id = #{record.communityId,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=VARCHAR},
+      origin = #{record.origin,jdbcType=VARCHAR},
+      recommend_num = #{record.recommendNum,jdbcType=INTEGER},
+      unrecommend_num = #{record.unrecommendNum,jdbcType=INTEGER},
+      `state` = #{record.state,jdbcType=INTEGER},
+      developer = #{record.developer,jdbcType=VARCHAR},
+      version_main = #{record.versionMain,jdbcType=VARCHAR},
+      isbn_id = #{record.isbnId,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      ios_state = #{record.iosState,jdbcType=INTEGER},
+      android_state = #{record.androidState,jdbcType=INTEGER},
+      developer_id = #{record.developerId,jdbcType=VARCHAR},
+      test_number = #{record.testNumber,jdbcType=INTEGER},
+      tset_date = #{record.tsetDate,jdbcType=TIMESTAMP},
+      isbn_image = #{record.isbnImage,jdbcType=VARCHAR},
+      copyright_id = #{record.copyrightId,jdbcType=VARCHAR},
+      copyright_image = #{record.copyrightImage,jdbcType=VARCHAR},
+      credentials = #{record.credentials,jdbcType=VARCHAR},
+      issue_id = #{record.issueId,jdbcType=VARCHAR},
+      android_package_name = #{record.androidPackageName,jdbcType=VARCHAR},
+      comment_num = #{record.commentNum,jdbcType=INTEGER},
+      boom_download_num = #{record.boomDownloadNum,jdbcType=BIGINT},
+      game_idt_sn = #{record.gameIdtSn,jdbcType=BIGINT},
+      tab_game_id = #{record.tabGameId,jdbcType=VARCHAR},
+      google_game_id = #{record.googleGameId,jdbcType=VARCHAR},
+      video_url_latest = #{record.videoUrlLatest,jdbcType=BIT},
+      cost_free = #{record.costFree,jdbcType=BIT},
+      company = #{record.company,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      android_status_desc = #{record.androidStatusDesc,jdbcType=VARCHAR},
+      ios_status_desc = #{record.iosStatusDesc,jdbcType=VARCHAR},
+      google_deputy_name = #{record.googleDeputyName,jdbcType=VARCHAR},
+      can_fast = #{record.canFast,jdbcType=BIT},
+      week_download_num = #{record.weekDownloadNum,jdbcType=BIGINT},
+      score = #{record.score,jdbcType=DOUBLE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    update t_game
+    <set>
+      <if test="video != null">
+        video = #{video,jdbcType=VARCHAR},
+      </if>
+      <if test="apk != null">
+        apk = #{apk,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadNum != null">
+        download_num = #{downloadNum,jdbcType=INTEGER},
+      </if>
+      <if test="itunesId != null">
+        itunes_id = #{itunesId,jdbcType=VARCHAR},
+      </if>
+      <if test="compatibility != null">
+        compatibility = #{compatibility,jdbcType=VARCHAR},
+      </if>
+      <if test="versionChild != null">
+        version_child = #{versionChild,jdbcType=VARCHAR},
+      </if>
+      <if test="gameSize != null">
+        game_size = #{gameSize,jdbcType=BIGINT},
+      </if>
+      <if test="releaseImage != null">
+        release_image = #{releaseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImage != null">
+        cover_image = #{coverImage,jdbcType=VARCHAR},
+      </if>
+      <if test="imageRatio != null">
+        image_ratio = #{imageRatio,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="editedAt != null">
+        edited_at = #{editedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="communityId != null">
+        community_id = #{communityId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="origin != null">
+        origin = #{origin,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendNum != null">
+        recommend_num = #{recommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="unrecommendNum != null">
+        unrecommend_num = #{unrecommendNum,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        `state` = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="developer != null">
+        developer = #{developer,jdbcType=VARCHAR},
+      </if>
+      <if test="versionMain != null">
+        version_main = #{versionMain,jdbcType=VARCHAR},
+      </if>
+      <if test="isbnId != null">
+        isbn_id = #{isbnId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="iosState != null">
+        ios_state = #{iosState,jdbcType=INTEGER},
+      </if>
+      <if test="androidState != null">
+        android_state = #{androidState,jdbcType=INTEGER},
+      </if>
+      <if test="developerId != null">
+        developer_id = #{developerId,jdbcType=VARCHAR},
+      </if>
+      <if test="testNumber != null">
+        test_number = #{testNumber,jdbcType=INTEGER},
+      </if>
+      <if test="tsetDate != null">
+        tset_date = #{tsetDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isbnImage != null">
+        isbn_image = #{isbnImage,jdbcType=VARCHAR},
+      </if>
+      <if test="copyrightId != null">
+        copyright_id = #{copyrightId,jdbcType=VARCHAR},
+      </if>
+      <if test="copyrightImage != null">
+        copyright_image = #{copyrightImage,jdbcType=VARCHAR},
+      </if>
+      <if test="credentials != null">
+        credentials = #{credentials,jdbcType=VARCHAR},
+      </if>
+      <if test="issueId != null">
+        issue_id = #{issueId,jdbcType=VARCHAR},
+      </if>
+      <if test="androidPackageName != null">
+        android_package_name = #{androidPackageName,jdbcType=VARCHAR},
+      </if>
+      <if test="commentNum != null">
+        comment_num = #{commentNum,jdbcType=INTEGER},
+      </if>
+      <if test="boomDownloadNum != null">
+        boom_download_num = #{boomDownloadNum,jdbcType=BIGINT},
+      </if>
+      <if test="gameIdtSn != null">
+        game_idt_sn = #{gameIdtSn,jdbcType=BIGINT},
+      </if>
+      <if test="tabGameId != null">
+        tab_game_id = #{tabGameId,jdbcType=VARCHAR},
+      </if>
+      <if test="googleGameId != null">
+        google_game_id = #{googleGameId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrlLatest != null">
+        video_url_latest = #{videoUrlLatest,jdbcType=BIT},
+      </if>
+      <if test="costFree != null">
+        cost_free = #{costFree,jdbcType=BIT},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="androidStatusDesc != null">
+        android_status_desc = #{androidStatusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="iosStatusDesc != null">
+        ios_status_desc = #{iosStatusDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="googleDeputyName != null">
+        google_deputy_name = #{googleDeputyName,jdbcType=VARCHAR},
+      </if>
+      <if test="canFast != null">
+        can_fast = #{canFast,jdbcType=BIT},
+      </if>
+      <if test="weekDownloadNum != null">
+        week_download_num = #{weekDownloadNum,jdbcType=BIGINT},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DOUBLE},
+      </if>
+      <if test="tags != null">
+        tags = #{tags,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="updateLog != null">
+        update_log = #{updateLog,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="images != null">
+        images = #{images,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="fungoTalk != null">
+        fungo_talk = #{fungoTalk,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="intro != null">
+        intro = #{intro,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    update t_game
+    set video = #{video,jdbcType=VARCHAR},
+      apk = #{apk,jdbcType=VARCHAR},
+      download_num = #{downloadNum,jdbcType=INTEGER},
+      itunes_id = #{itunesId,jdbcType=VARCHAR},
+      compatibility = #{compatibility,jdbcType=VARCHAR},
+      version_child = #{versionChild,jdbcType=VARCHAR},
+      game_size = #{gameSize,jdbcType=BIGINT},
+      release_image = #{releaseImage,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      cover_image = #{coverImage,jdbcType=VARCHAR},
+      image_ratio = #{imageRatio,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      edited_at = #{editedAt,jdbcType=TIMESTAMP},
+      community_id = #{communityId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      recommend_num = #{recommendNum,jdbcType=INTEGER},
+      unrecommend_num = #{unrecommendNum,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=INTEGER},
+      developer = #{developer,jdbcType=VARCHAR},
+      version_main = #{versionMain,jdbcType=VARCHAR},
+      isbn_id = #{isbnId,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      ios_state = #{iosState,jdbcType=INTEGER},
+      android_state = #{androidState,jdbcType=INTEGER},
+      developer_id = #{developerId,jdbcType=VARCHAR},
+      test_number = #{testNumber,jdbcType=INTEGER},
+      tset_date = #{tsetDate,jdbcType=TIMESTAMP},
+      isbn_image = #{isbnImage,jdbcType=VARCHAR},
+      copyright_id = #{copyrightId,jdbcType=VARCHAR},
+      copyright_image = #{copyrightImage,jdbcType=VARCHAR},
+      credentials = #{credentials,jdbcType=VARCHAR},
+      issue_id = #{issueId,jdbcType=VARCHAR},
+      android_package_name = #{androidPackageName,jdbcType=VARCHAR},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      boom_download_num = #{boomDownloadNum,jdbcType=BIGINT},
+      game_idt_sn = #{gameIdtSn,jdbcType=BIGINT},
+      tab_game_id = #{tabGameId,jdbcType=VARCHAR},
+      google_game_id = #{googleGameId,jdbcType=VARCHAR},
+      video_url_latest = #{videoUrlLatest,jdbcType=BIT},
+      cost_free = #{costFree,jdbcType=BIT},
+      company = #{company,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      android_status_desc = #{androidStatusDesc,jdbcType=VARCHAR},
+      ios_status_desc = #{iosStatusDesc,jdbcType=VARCHAR},
+      google_deputy_name = #{googleDeputyName,jdbcType=VARCHAR},
+      can_fast = #{canFast,jdbcType=BIT},
+      week_download_num = #{weekDownloadNum,jdbcType=BIGINT},
+      score = #{score,jdbcType=DOUBLE},
+      tags = #{tags,jdbcType=LONGVARCHAR},
+      update_log = #{updateLog,jdbcType=LONGVARCHAR},
+      images = #{images,jdbcType=LONGVARCHAR},
+      fungo_talk = #{fungoTalk,jdbcType=LONGVARCHAR},
+      intro = #{intro,jdbcType=LONGVARCHAR},
+      detail = #{detail,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceying.chx.cpi.base.rm.base.dto.GameEntity">
+    update t_game
+    set video = #{video,jdbcType=VARCHAR},
+      apk = #{apk,jdbcType=VARCHAR},
+      download_num = #{downloadNum,jdbcType=INTEGER},
+      itunes_id = #{itunesId,jdbcType=VARCHAR},
+      compatibility = #{compatibility,jdbcType=VARCHAR},
+      version_child = #{versionChild,jdbcType=VARCHAR},
+      game_size = #{gameSize,jdbcType=BIGINT},
+      release_image = #{releaseImage,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      cover_image = #{coverImage,jdbcType=VARCHAR},
+      image_ratio = #{imageRatio,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR},
+      edited_at = #{editedAt,jdbcType=TIMESTAMP},
+      community_id = #{communityId,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      origin = #{origin,jdbcType=VARCHAR},
+      recommend_num = #{recommendNum,jdbcType=INTEGER},
+      unrecommend_num = #{unrecommendNum,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=INTEGER},
+      developer = #{developer,jdbcType=VARCHAR},
+      version_main = #{versionMain,jdbcType=VARCHAR},
+      isbn_id = #{isbnId,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      ios_state = #{iosState,jdbcType=INTEGER},
+      android_state = #{androidState,jdbcType=INTEGER},
+      developer_id = #{developerId,jdbcType=VARCHAR},
+      test_number = #{testNumber,jdbcType=INTEGER},
+      tset_date = #{tsetDate,jdbcType=TIMESTAMP},
+      isbn_image = #{isbnImage,jdbcType=VARCHAR},
+      copyright_id = #{copyrightId,jdbcType=VARCHAR},
+      copyright_image = #{copyrightImage,jdbcType=VARCHAR},
+      credentials = #{credentials,jdbcType=VARCHAR},
+      issue_id = #{issueId,jdbcType=VARCHAR},
+      android_package_name = #{androidPackageName,jdbcType=VARCHAR},
+      comment_num = #{commentNum,jdbcType=INTEGER},
+      boom_download_num = #{boomDownloadNum,jdbcType=BIGINT},
+      game_idt_sn = #{gameIdtSn,jdbcType=BIGINT},
+      tab_game_id = #{tabGameId,jdbcType=VARCHAR},
+      google_game_id = #{googleGameId,jdbcType=VARCHAR},
+      video_url_latest = #{videoUrlLatest,jdbcType=BIT},
+      cost_free = #{costFree,jdbcType=BIT},
+      company = #{company,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      android_status_desc = #{androidStatusDesc,jdbcType=VARCHAR},
+      ios_status_desc = #{iosStatusDesc,jdbcType=VARCHAR},
+      google_deputy_name = #{googleDeputyName,jdbcType=VARCHAR},
+      can_fast = #{canFast,jdbcType=BIT},
+      week_download_num = #{weekDownloadNum,jdbcType=BIGINT},
+      score = #{score,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

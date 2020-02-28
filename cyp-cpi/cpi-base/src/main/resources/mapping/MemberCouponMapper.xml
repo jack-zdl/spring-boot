@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ceying.chx.cpi.base.rm.base.dao  # ÔÝÊ±²»ÐèÒªdaoÉú³É.MemberCouponMapper">
+  <resultMap id="BaseResultMap" type="com.ceying.chx.cpi.base.rm.base.dto.MemberCoupon">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="member_type" jdbcType="INTEGER" property="memberType" />
+    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
+    <result column="parent_member_id" jdbcType="VARCHAR" property="parentMemberId" />
+    <result column="coupon_id" jdbcType="VARCHAR" property="couponId" />
+    <result column="isactive" jdbcType="CHAR" property="isactive" />
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+    <result column="rversion" jdbcType="INTEGER" property="rversion" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, member_type, member_id, parent_member_id, coupon_id, isactive, created_by, created_at, 
+    updated_by, updated_at, rversion, description
+  </sql>
+  <select id="selectByExample" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCouponExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_member_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_member_coupon
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from t_member_coupon
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCouponExample">
+    delete from t_member_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCoupon">
+    insert into t_member_coupon (id, member_type, member_id, 
+      parent_member_id, coupon_id, isactive, 
+      created_by, created_at, updated_by, 
+      updated_at, rversion, description
+      )
+    values (#{id,jdbcType=VARCHAR}, #{memberType,jdbcType=INTEGER}, #{memberId,jdbcType=VARCHAR}, 
+      #{parentMemberId,jdbcType=VARCHAR}, #{couponId,jdbcType=VARCHAR}, #{isactive,jdbcType=CHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{rversion,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCoupon">
+    insert into t_member_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="memberType != null">
+        member_type,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
+      <if test="parentMemberId != null">
+        parent_member_id,
+      </if>
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="isactive != null">
+        isactive,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="rversion != null">
+        rversion,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="memberType != null">
+        #{memberType,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentMemberId != null">
+        #{parentMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rversion != null">
+        #{rversion,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCouponExample" resultType="java.lang.Long">
+    select count(*) from t_member_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_member_coupon
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberType != null">
+        member_type = #{record.memberType,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentMemberId != null">
+        parent_member_id = #{record.parentMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponId != null">
+        coupon_id = #{record.couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isactive != null">
+        isactive = #{record.isactive,jdbcType=CHAR},
+      </if>
+      <if test="record.createdBy != null">
+        created_by = #{record.createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedBy != null">
+        updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rversion != null">
+        rversion = #{record.rversion,jdbcType=INTEGER},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_member_coupon
+    set id = #{record.id,jdbcType=VARCHAR},
+      member_type = #{record.memberType,jdbcType=INTEGER},
+      member_id = #{record.memberId,jdbcType=VARCHAR},
+      parent_member_id = #{record.parentMemberId,jdbcType=VARCHAR},
+      coupon_id = #{record.couponId,jdbcType=VARCHAR},
+      isactive = #{record.isactive,jdbcType=CHAR},
+      created_by = #{record.createdBy,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_by = #{record.updatedBy,jdbcType=VARCHAR},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      rversion = #{record.rversion,jdbcType=INTEGER},
+      description = #{record.description,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCoupon">
+    update t_member_coupon
+    <set>
+      <if test="memberType != null">
+        member_type = #{memberType,jdbcType=INTEGER},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
+      <if test="parentMemberId != null">
+        parent_member_id = #{parentMemberId,jdbcType=VARCHAR},
+      </if>
+      <if test="couponId != null">
+        coupon_id = #{couponId,jdbcType=VARCHAR},
+      </if>
+      <if test="isactive != null">
+        isactive = #{isactive,jdbcType=CHAR},
+      </if>
+      <if test="createdBy != null">
+        created_by = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rversion != null">
+        rversion = #{rversion,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ceying.chx.cpi.base.rm.base.dto.MemberCoupon">
+    update t_member_coupon
+    set member_type = #{memberType,jdbcType=INTEGER},
+      member_id = #{memberId,jdbcType=VARCHAR},
+      parent_member_id = #{parentMemberId,jdbcType=VARCHAR},
+      coupon_id = #{couponId,jdbcType=VARCHAR},
+      isactive = #{isactive,jdbcType=CHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_by = #{updatedBy,jdbcType=VARCHAR},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      rversion = #{rversion,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
