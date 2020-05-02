@@ -6,7 +6,7 @@
 		<groupId>com.zhang.netty</groupId>
 		<artifactId>netty-rpc</artifactId>
 		<version>0.1-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		 <!-- lookup parent from repository -->
 	</parent>
 	<artifactId>netty-common</artifactId>
 	<version>1.0-SNAPSHOT</version>
